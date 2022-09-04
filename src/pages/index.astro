@@ -8,6 +8,16 @@ import Card from '../components/Card.astro';
 		<h1 style="text-align: center">This is <span class="text-gradient">⚓Anchor.</span></h1>
 		<ul role="list" class="link-card-grid">
 			<Card
+				href="https://github.com/tjalp/"
+				title="tjalp's github profile"
+				body="Check out my amazing profile!" 
+			/>
+			<Card
+				href="https://github.com/tjalp/anchor/"
+				title="Anchor's github repository"
+				body="Take a look at this website's source code" 
+			/>
+			<Card
 				href="/test"
 				title="Test Page"
 				body="Enter the test page"
@@ -73,7 +83,7 @@ import Card from '../components/Card.astro';
 
 	.link-card-grid {
 		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
+		grid-template-columns: repeat(auto-fit, minmax(48ch, 1fr));
 		gap: 1rem;
 		padding: 0;
 	}
