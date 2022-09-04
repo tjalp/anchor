@@ -1,15 +1,11 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import Layout from '../layouts/Base.astro';
 import Card from '../components/Card.astro';
 ---
 
 <Layout title="This is Astro.">
 	<main>
-		<h1>This is <span class="text-gradient">Astro</span></h1>
-		<p class="instructions">
-			Check out the <code>src/pages</code> directory to get started.<br />
-			<strong>Code Challenge:</strong> Tweak the "Welcome to Astro" message above.
-		</p>
+		<h1 style="text-align: center">This is <span class="text-gradient">Astro</span></h1>
 		<ul role="list" class="link-card-grid">
 			<Card
 				href="https://docs.astro.build/"
@@ -36,6 +32,11 @@ import Card from '../components/Card.astro';
 				title="Test Page"
 				body="Enter the test page"
 			/>
+			<Card
+				href="/404"
+				title="404"
+				body="Enter the 404 page"
+			/>
 		</ul>
 	</main>
 </Layout>
@@ -47,12 +48,6 @@ import Card from '../components/Card.astro';
 
 	h1 {
 		margin: 2rem 0;
-	}
-
-	main {
-		margin: auto;
-		padding: 1em;
-		max-width: 60ch;
 	}
 
 	.text-gradient {
