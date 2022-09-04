@@ -3,9 +3,9 @@ import Layout from '../layouts/Base.astro';
 import Card from '../components/Card.astro';
 ---
 
-<Layout title="This is Anchor.">
+<Layout title="This is ⚓anchor.">
 	<main>
-		<h1 style="text-align: center">This is <span class="text-gradient">Anchor.</span></h1>
+		<h1 style="text-align: center">This is <span class="text-gradient">⚓Anchor.</span></h1>
 		<ul role="list" class="link-card-grid">
 			<Card
 				href="/test"
@@ -23,7 +23,11 @@ import Card from '../components/Card.astro';
 
 <style>
 	:root {
-		--astro-gradient: linear-gradient(0deg, #4f39fa, #da62c4);
+		/*
+		#ED4264, #da62c4
+		#085078, #85D8CE
+		*/
+		--astro-gradient: linear-gradient(0deg, #4776E6, #8E54E9);
 	}
 
 	h1 {
@@ -47,7 +51,7 @@ import Card from '../components/Card.astro';
 			background-position-y: 0%;
 		}
 		50% {
-			background-position-y: 80%;
+			background-position-y: 100%;
 		}
 	}
 
