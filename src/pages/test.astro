@@ -1,10 +1,15 @@
 ---
-import Card from "../components/Card.astro";
+import AnchorCard from "../components/AnchorCard.astro";
 import Layout from "../layouts/Base.astro";
 ---
 
 <Layout title="Test Page">
   <main>
-    <Card href="/" title="Home Page" body="Enter the home page" />
+    <div class="text-gradient text-6xl text-center m-10 text-black dark:text-slate-400">
+      Test Page
+    </div>
+    <div>
+      <AnchorCard title="Home Page" href="/">Enter the home page</AnchorCard>
+    </div>
   </main>
 </Layout>

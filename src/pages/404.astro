@@ -1,4 +1,5 @@
 ---
+import AnchorCard from "../components/AnchorCard.astro";
 import Card from "../components/Card.astro";
 import Layout from "../layouts/Base.astro";
 
@@ -6,12 +7,12 @@ import Layout from "../layouts/Base.astro";
 
 <Layout title="404 - page not found">
   <main>
-    <h1 class="text-gradient" style="text-align: center">~ 404 ~</h1>
-    <Card
-      title="Page not found"
-      href="/"
-      body="Go back to home" 
-    />
+    <div class="text-gradient text-6xl text-center m-10 text-black dark:text-slate-400">
+      ~ 404 ~
+    </div>
+    <div>
+      <AnchorCard title="Page not found" href="/">Return to the home page</AnchorCard>
+    </div>
   </main>
 </Layout>
 

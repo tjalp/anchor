@@ -1,0 +1,47 @@
+---
+export interface Props {
+  title: string;
+  href?: string;
+}
+
+const { title, href } = Astro.props
+---
+
+<!-- <div class="transition bg-white bg-left-bottom rounded-lg flex shrink-0 p-4 mx-auto border-4 w-full shadow-xl hover:bg-gradient-to-br from-yellow-400 to-pink-400 hover:bg-right-top duration-500"> -->
+<div>
+  <a 
+    href={href} 
+    class="
+      transition ease-in-out duration-500
+      bg-white
+      rounded-lg
+      shrink-0
+      p-4
+      flex
+      mx-auto
+      border-4
+      shadow-xl
+      bg-[position:0]
+      hover:cursor-pointer
+      hover:bg-slate-100
+      dark:bg-zinc-800
+      dark:hover:bg-zinc-700
+      dark:border-zinc-700
+      dark:hover:border-zinc-600
+      "
+  >
+    <div>
+      <div class="text-lg text-black dark:text-white">{title} &rarr;</div>
+      <p class="text-md text-slate-500 dark:text-zinc-300">
+        <slot />
+      </p>
+    </div>
+  </a>
+</div>
+<!-- </div> -->
+
+<style>
+  .bg-gradient {
+    background-image: linear-gradient(45deg, #ffc500, #f2709c 30%, var(--color-border) 60%);;
+  }
+</style>
