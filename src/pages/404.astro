@@ -5,32 +5,13 @@ import Layout from "../layouts/Base.astro";
 
 ---
 
-<Layout title="404 - page not found">
+<Layout title="Page not found">
   <main>
-    <div class="text-gradient text-6xl text-center m-10 text-black dark:text-slate-400">
+    <div class="bg-gradient-to-r from-[#f7ff00] to-[#db36a4] font-black bg-clip-text text-6xl text-center m-6 text-transparent">
       ~ 404 ~
     </div>
-    <div>
+    <div class="max-w-2xl items-center mx-auto">
       <AnchorCard title="Page not found" href="/">Return to the home page</AnchorCard>
     </div>
   </main>
 </Layout>
-
-<style>
-  :root {
-    --gradient: linear-gradient(45deg, #f7ff00, #db36a4);
-  }
-
-  /* main {
-    margin: auto;
-    padding: 1em;
-		max-width: 60ch;
-  } */
-
-  .text-gradient {
-    font-weight: 900;
-		background-image: var(--gradient);
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
-  }
-</style>
