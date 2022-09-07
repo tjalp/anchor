@@ -1,0 +1,13 @@
+---
+import AnchorCard from "../components/AnchorCard.astro";
+import Layout from "../layouts/Base.astro"
+import GoogleLogin from "../components/GoogleLogin.jsx";
+---
+
+<script src="https://accounts.google.com/gsi/client" async defer></script>   
+<Layout title="Login">
+    <AnchorCard title="Go back" href="/">Go back to home</AnchorCard>
+    <GoogleLogin client:load />
+</Layout>
+
+
