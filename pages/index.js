@@ -14,6 +14,7 @@ export default function Home() {
         <AnchorCard title="tjalp's Profile" href="https://github.com/tjalp/">Take a look at tjalp''s profile on GitHub</AnchorCard>
         <AnchorCard title="Test Page" href="/test">Enter the temporary test page</AnchorCard>
         <AnchorCard title="404" href="/404">Navigate to a non-existent page</AnchorCard>
+        <AnchorCard title="Login" href="/login">Login with google</AnchorCard>
       </div>
     </div>
   )
