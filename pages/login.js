@@ -5,7 +5,6 @@ import GoogleLogin from "../components/google-login";
 export default function login() {
     return (
         <div>
-        <script src="https://accounts.google.com/gsi/client" async defer/>
         <AnchorCard title="Go back" href="/">Go back to the home page</AnchorCard>
         <GoogleLogin />
         </div>

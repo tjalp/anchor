@@ -34,9 +34,9 @@ function GoogleLogin() {
     }, []);
 
     
-
     return (<div>
         <div id="signInDiv"></div>
+        
         <button id="signOutButton" style={{color: "gray"}} onClick={(e) => handleSignOut(e)} hidden={true}>Sign out</button>
         <h2 id="welcomeText" style={{color: "gray"}} hidden={true}>Hallo {user.given_name}</h2>
         </div>);
