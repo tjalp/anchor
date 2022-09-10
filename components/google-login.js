@@ -6,7 +6,11 @@ function GoogleLogin() {
     const [user, setUser] = useState({});
 
     function handleCallbackResponse(response) {
-        var userInfo = jwt_decode(response.credential);
+        login(jwt_decode(response.credential));
+        localStorage.setItem("SignInInfo", response.credential);
+    }
+
+    function login(userInfo) {
         setUser(userInfo);
         document.getElementById("signInDiv").hidden = true;
         document.getElementById("welcomeText").hidden = false;
@@ -18,9 +22,14 @@ function GoogleLogin() {
         document.getElementById("signInDiv").hidden = false;
         document.getElementById("welcomeText").hidden = true;
         document.getElementById("signOutButton").hidden = true;
+        localStorage.removeItem("SignInInfo");
     }
 
     useEffect(() => {
+        var signInInfo = localStorage.getItem("SignInInfo");
+        if (signInInfo != null) {
+            login(jwt_decode(signInInfo));
+        }
         /* global google*/
         google.accounts.id.initialize({
             client_id: "410755111991-4ceee20ibrsiq23097qe1sohltafi3e3.apps.googleusercontent.com",
