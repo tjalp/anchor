@@ -4,7 +4,7 @@ export default function AnchorCard({ title, href, children }) {
   return (
     <>
       <Link href={href}>
-        <button className="
+        <div className="
           transition ease-in-out duration-200
           bg-white
           rounded-xl
@@ -24,7 +24,7 @@ export default function AnchorCard({ title, href, children }) {
           <p className="text-xl text-slate-500 dark:text-zinc-300">
             {children}
           </p>
-        </button>
+        </div>
       </Link>
     </>
   )
