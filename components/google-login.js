@@ -3,25 +3,19 @@ import jwt_decode from "jwt-decode";
 
 function GoogleLogin() {
 
-    const [user, setUser] = useState({});
+    const [user, setUser] = useState(null);
 
     function handleCallbackResponse(response) {
         login(jwt_decode(response.credential));
-        localStorage.setItem("SignInInfo", response.credential);
+        localStorage.setItem("SignInInfo", response.credential);    
     }
 
     function login(userInfo) {
         setUser(userInfo);
-        document.getElementById("signInDiv").hidden = true;
-        document.getElementById("welcomeText").hidden = false;
-        document.getElementById("signOutButton").hidden = false;
     }
 
     function handleSignOut(event) {
-        setUser({});
-        document.getElementById("signInDiv").hidden = false;
-        document.getElementById("welcomeText").hidden = true;
-        document.getElementById("signOutButton").hidden = true;
+        setUser(null);
         localStorage.removeItem("SignInInfo");
     }
 
@@ -44,10 +38,9 @@ function GoogleLogin() {
 
     
     return (<div>
-        <div id="signInDiv"></div>
-        
-        <button id="signOutButton" style={{color: "gray"}} onClick={(e) => handleSignOut(e)} hidden={true}>Sign out</button>
-        <h2 id="welcomeText" style={{color: "gray"}} hidden={true}>Hallo {user.given_name}</h2>
+        <div id="signInDiv" hidden={user ? true : false}></div>
+        <button id="signOutButton" style={{color: "gray"}} onClick={(e) => handleSignOut(e)} hidden={user ? false : true}>Sign out</button>
+        <h2 id="welcomeText" style={{color: "gray"}} hidden={user ? false : true}>Hallo {user ? user.given_name : "(uitgelogd)"}</h2>
         </div>);
 }
 
