@@ -9,4 +9,8 @@ router.route("/posts")
     .put(postsController.apiUpdatePost)
     .delete(postsController.apiDeletePost);
 
+
+router.route("/posts/id/:id")
+    .get(postsController.apiGetPostById);
+
 export default router;

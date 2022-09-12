@@ -15,6 +15,7 @@ export default function Home() {
         <AnchorCard title="Test Page" href="/test">Enter the temporary test page</AnchorCard>
         <AnchorCard title="404" href="/404">Navigate to a non-existent page</AnchorCard>
         <AnchorCard title="Login" href="/login">Login with google</AnchorCard>
+        <AnchorCard title="Posts" href="/posts">View posts</AnchorCard>
       </div>
     </div>
   )

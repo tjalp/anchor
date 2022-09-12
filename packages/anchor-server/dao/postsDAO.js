@@ -92,4 +92,12 @@ export default class PostsDAO{
             console.error(`Failed to convert cursor to array or to count total documents: ${e}`);
         }
     }
+
+    static async getPostById(id) {
+        try {
+            return posts.findOne({"_id": ObjectId(id)});
+        } catch (e) {
+            return { error: e.message };
+        }
+    }
 }

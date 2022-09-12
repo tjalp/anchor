@@ -97,3 +97,20 @@ Returns:
 }
 ```
 See https://mongodb.github.io/node-mongodb-native/4.9/interfaces/DeleteResult.html
+
+# Get post by ID
+GET request to `(ip):(port)/api/v1/posts/id/(id)`
+Returns
+```json
+{
+  {
+	"status": "success",
+	"post": {
+		"_id": "631ed6d882f8a62225664e63",
+		"author": "Mathijs",
+		"title": "Hallo",
+		"content": "Hallo wereld!",
+		"date": "2022-09-12T06:51:04.693Z"
+	}
+}
+```
