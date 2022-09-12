@@ -15,7 +15,7 @@ export default function posts() {
       <AnchorCard title="Go back" href="/">Go back to the home page</AnchorCard>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 py-4">
         <Post post_id="631f138b745ca5b4764f6f64" />
-        <Post post_id="631f138b745ca5b4764f6f64" />
+        <Post post_id="631f138b745ca5b4764f6f65" />
       </div>
     </>
   )

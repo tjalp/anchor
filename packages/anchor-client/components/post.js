@@ -17,6 +17,9 @@ function Post({post_id}) {
                 setTitle("Error loading post!");
                 setContent(response.error);
             }
+        }).catch((err) => {
+            setTitle("An error occured while loading this post");
+            setContent(err.message);
         });
     }, [])
 
