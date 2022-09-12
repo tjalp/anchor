@@ -2,8 +2,6 @@ import React, { useEffect, useState } from "react";
 import Axios from "axios";
 import AnchorCard from "./anchor-card";
 
-
-
 function Post({post_id}) {
 
     const [title, setTitle] = useState("Placeholder title");
@@ -28,6 +26,5 @@ function Post({post_id}) {
         </div>
     );
 }
-
 
 export default Post;

@@ -1,4 +1,3 @@
-import { response } from "express";
 import PostsDAO from "../dao/postsDAO.js";
 
 export default class PostController {
