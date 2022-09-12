@@ -1,13 +1,17 @@
-import AnchorCard from "../components/anchor-card";
-import Layout from "../components/layouts/default";
-import GoogleLogin from "../components/google-login";
+import AnchorCard from '../components/anchor-card'
+import Layout from '../components/layouts/default'
+import GoogleLogin from '../components/google-login'
+import Head from 'next/head'
 
 export default function login() {
   return (
-		<div>
+		<>
+			<Head>
+				<title>Login</title>
+			</Head>
 			<AnchorCard title="Go back" href="/">Go back to the home page</AnchorCard>
 			<GoogleLogin />
-		</div>
+		</>
   )
 }
 

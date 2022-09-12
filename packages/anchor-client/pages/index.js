@@ -1,10 +1,13 @@
-import Link from 'next/link'
+import Head from 'next/head'
 import AnchorCard from '../components/anchor-card'
 import Layout from '../components/layouts/default'
 
 export default function Home() {
   return (
-    <div>
+    <>
+      <Head>
+        <title>Anchor, your favorite website</title>
+      </Head>
       <div className="text-7xl text-center m-6 text-black dark:text-slate-400">
         This is <span className="font-black bg-gradient-to-t from-[#4776E6] to-[#8E54E9] bg-clip-text text-transparent">⚓Anchor.</span>
       </div>
@@ -17,7 +20,7 @@ export default function Home() {
         <AnchorCard title="Login" href="/login">Login with google</AnchorCard>
         <AnchorCard title="Posts" href="/posts">View posts</AnchorCard>
       </div>
-    </div>
+    </>
   )
 }
 
