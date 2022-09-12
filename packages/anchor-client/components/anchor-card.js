@@ -4,6 +4,7 @@ export default function AnchorCard({ title, href, children }) {
   return (
     <>
       <Link href={href}>
+        <a>
         <div className="
           transition ease-in-out duration-200
           bg-white
@@ -25,6 +26,7 @@ export default function AnchorCard({ title, href, children }) {
             {children}
           </p>
         </div>
+        </a>
       </Link>
     </>
   )
