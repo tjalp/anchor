@@ -9,6 +9,15 @@
 			"problemMatcher": [],
 			"label": "Client - Dev",
 			"detail": "Run the development server"
+		},
+		{
+			"type": "npm",
+			"script": "watch",
+			"path": "packages/anchor-server/",
+			"group": "build",
+			"problemMatcher": [],
+			"label": "Server - Dev",
+			"detail": "Run the development server"
 		}
 	]
 }
