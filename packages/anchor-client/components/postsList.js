@@ -5,18 +5,21 @@ import Post from "../components/post";
 
 export default function PostsList(amount, page) {
 
-    const [posts, setPosts] = useState([])
+  const [posts, setPosts] = useState([])
 
-    useEffect(() => {
-        axios.get(`${process.env.NEXT_PUBLIC_API_URL}/posts`).then((response) => {
-            if (!response.data.error) {
-                setPosts(response.data.posts);
-            }
-        })
-    }, [])
+  useEffect(() => {
+    axios.get(`${process.env.NEXT_PUBLIC_API_URL}/posts`).then((response) => {
+      if (!response.data.error) {
+        setPosts(response.data.posts);
+      }
+    }).catch((err) => {
+      console.log("An error occured: " + err)
+    })
+  }, [])
 
-    return (<div> 
-            <li>{posts.map(p => <Post title={p.title} content={p.content} post_id={p._id} key={p._id} />)}</li>
-    </div>)
-
+  return (
+    <>
+      <li>{posts.map(p => <Post title={p.title} content={p.content} post_id={p._id} key={p._id} />)}</li>
+    </>
+  )
 }
