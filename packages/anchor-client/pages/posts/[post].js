@@ -18,11 +18,13 @@ export default function post({ post_id }) {
                     setTitle(response.data.post.title);
                     setContent(response.data.post.content);
                 } else {
-                    setTitle("Post doesn't exist!");
-                    setContent("Failed to fetch post.")
+                    setTitle("Failed to find post!");
+                setContent("The post might not exist.");
                 }
             }).catch((err) => {
                 console.error(`An error occurred: ${err}`)
+                setTitle("Failed to find post!");
+                setContent("The post might not exist.");
             })
         }   
     }, [router.isReady])
