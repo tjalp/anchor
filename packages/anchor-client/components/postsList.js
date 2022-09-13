@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import Post from "../components/post";
+import Post from "../components/postComponent.js";
 
 export default function PostsList(amount, page) {
   const [posts, setPosts] = useState([])

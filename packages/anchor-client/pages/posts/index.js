@@ -1,6 +1,6 @@
-import AnchorCard from '../components/anchor-card'
-import Layout from '../components/layouts/default'
-import PostsList from '../components/postsList'
+import AnchorCard from '../../components/anchor-card'
+import Layout from '../../components/layouts/default'
+import PostsList from '../../components/postsList'
 import Head from 'next/head'
 
 export default function Posts() {
