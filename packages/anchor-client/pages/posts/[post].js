@@ -1,8 +1,9 @@
-import { useRouter } from "next/router";
-import React, { useEffect, useState } from "react";
-import axios from "axios";
-import Layout from "../../components/layouts/default";
-import AnchorCard from "../../components/anchor-card";
+import { useRouter } from 'next/router'
+import React, { useEffect, useState } from 'react'
+import axios from 'axios'
+import Layout from '../../components/layouts/default'
+import AnchorCard from '../../components/anchor-card'
+import Head from 'next/head'
 
 export default function Post({ post_id }) {
 
@@ -31,6 +32,9 @@ export default function Post({ post_id }) {
 
   return (
     <div className="text-center dark:text-slate-100 text-slate-800">
+      <Head>
+        <title>{title}</title>
+      </Head>
       <AnchorCard title={"Go back"} href={"/posts"}>Go back to posts</AnchorCard>
       <h1 className="font-black text-7xl m-20 bg-gradient-to-br from-[#4776E6] to-[#8E54E9] bg-clip-text text-transparent">{title}</h1>
       <div>{content}</div>
