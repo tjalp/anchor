@@ -4,11 +4,5 @@
   "private": true,
   "workspaces": [
     "packages/*"
-  ],
-  "dependencies": {
-    "swr": "^1.3.0"
-  },
-  "devDependencies": {
-    "@types/react": "^18.0.20"
-  }
+  ]
 }
