@@ -1,8 +1,8 @@
-import Head from "next/head";
 import AnchorCard from "../components/anchor-card";
 import type { ReactElement } from "react";
 import { NextPageWithLayout } from "./_app";
 import Layout from "../components/layouts/default";
+import Head from "next/head";
 
 const Home: NextPageWithLayout = () => {
   return (
