@@ -20,6 +20,7 @@ const Home: NextPageWithLayout = () => {
         <AnchorCard title="404" href="/404">Navigate to a non-existent page</AnchorCard>
         <AnchorCard title="Login" href="/login">Login with google</AnchorCard>
         <AnchorCard title="Posts" href="/posts">View posts</AnchorCard>
+        <AnchorCard title="iets" href="/iets">iets</AnchorCard>
       </div>
     </>
   )
