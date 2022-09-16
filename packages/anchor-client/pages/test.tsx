@@ -1,8 +1,10 @@
-import AnchorCard from '../components/anchor-card'
-import Layout from '../components/layouts/default'
-import Head from 'next/head'
+import AnchorCard from "../components/anchor-card";
+import type { ReactElement } from "react";
+import { NextPageWithLayout } from "./_app";
+import Layout from "../components/layouts/default";
+import Head from "next/head";
 
-export default function Test() {
+const Test: NextPageWithLayout = () => {
   return (
     <>
       <Head>
@@ -18,6 +20,12 @@ export default function Test() {
   )
 }
 
-Test.getLayout = function getLayout(page) {
-  return (<Layout>{page}</Layout>)
+Test.getLayout = function getLayout(page: ReactElement) {
+  return (
+    <Layout>
+      {page}
+    </Layout>
+  )
 }
+
+export default Test
