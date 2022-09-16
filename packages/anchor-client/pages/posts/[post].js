@@ -31,14 +31,16 @@ export default function Post({ post_id }) {
 
 
   return (
-    <div className="text-center dark:text-slate-100 text-slate-800">
+    <>
       <Head>
         <title>{title}</title>
       </Head>
       <AnchorCard title={"Go back"} href={"/posts"}>Go back to posts</AnchorCard>
-      <h1 className="font-black text-7xl m-20 bg-gradient-to-br from-[#4776E6] to-[#8E54E9] bg-clip-text text-transparent">{title}</h1>
-      <div>{content}</div>
-    </div>
+      <div className="text-center m-6 text-black dark:text-slate-400">
+        <span className="font-black text-7xl m-20 bg-gradient-to-br from-[#4776E6] to-[#8E54E9] bg-clip-text text-transparent">{title}</span>
+        <div className="my-4">{content}</div>
+      </div>
+    </>
   )
 }
 
