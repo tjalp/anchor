@@ -19,6 +19,7 @@ export default function AnchorCard({ title, href, children }) {
           dark:bg-zinc-700
           dark:border-zinc-700
           dark:hover:border-zinc-600
+          dark:hover:shadow-zinc-900
         ">
           <div className="text-2xl text-black dark:text-white">{title} &rarr;</div>
           <p className="text-xl text-slate-500 dark:text-zinc-300">
