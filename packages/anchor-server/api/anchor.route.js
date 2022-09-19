@@ -14,6 +14,6 @@ router.route("/posts")
 router.route("/posts/id/:id")
     .get(postsController.apiGetPostById);
 
-router.route("/users/auth").post(usersController.verifyUser);
+router.route("/users/auth").post(usersController.apiVerifyUser);
 
 export default router;
