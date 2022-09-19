@@ -8,19 +8,22 @@ function GoogleLogin() {
     const [user, setUser] = useState(null);
 
     function handleGooleLoginCallbackResponse(googleResponse) {
-        
-        axios.post(`${process.env.NEXT_PUBLIC_API_URL}/users/auth`, { token: googleResponse.credential }).then((response) => {
+        login(googleResponse.credential);
+    }
+
+    function login(credential) {
+        axios.post(`${process.env.NEXT_PUBLIC_API_URL}/users/auth`, { token: credential }).then((response) => {
             if (!response.data.error) {
                 console.log(response.data);
+                localStorage.setItem("SignInInfo", credential);
+                setUser(jwt_decode(credential));
             } else {
                 console.error(response.data.error);
             }
+        }).catch((e) => {
+            console.error(e);
         });
-
-        localStorage.setItem("SignInInfo", googleResponse.credential);    
     }
-
-
 
     useEffect(() => {
         google.accounts.id.initialize({
@@ -28,6 +31,12 @@ function GoogleLogin() {
             callback: handleGooleLoginCallbackResponse
         });
         google.accounts.id.renderButton(document.getElementById("signInDiv"), { theme: "outline", size: "large"});
+
+
+        const signInfo = localStorage.getItem("SignInInfo");
+        if (signInfo) {
+            login(signInfo);
+        }
     }, []);
 
     function handleSignOut(event) {
