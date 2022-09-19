@@ -4,11 +4,12 @@ import axios from 'axios'
 import Layout from '../../components/layouts/default'
 import AnchorCard from '../../components/anchor-card'
 import Head from 'next/head'
+import LoadingIcon from '../../components/loading-icon'
 
 export default function Post({ post_id }) {
 
-  const [title, setTitle] = useState("Loading post...");
-  const [content, setContent] = useState("Loading content...");
+  const [title, setTitle] = useState("");
+  const [content, setContent] = useState("");
   const router = useRouter();
 
   useEffect(() => {
@@ -36,6 +37,7 @@ export default function Post({ post_id }) {
         <title>{title}</title>
       </Head>
       <AnchorCard title={"Go back"} href={"/posts"}>Go back to posts</AnchorCard>
+      {title === "" && <div className="my-4 w-full flex items-center justify-center"><LoadingIcon /></div>}
       <div className="text-center m-6 text-black dark:text-slate-400">
         <span className="font-black text-7xl m-20 bg-gradient-to-br from-[#4776E6] to-[#8E54E9] bg-clip-text text-transparent">{title}</span>
         <div className="my-4">{content}</div>
