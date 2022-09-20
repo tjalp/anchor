@@ -95,7 +95,7 @@ export default class PostsDAO{
 
     static async getPostById(id) {
         try {
-            return posts.findOne({"_id": ObjectId(id)});
+            return await posts.findOne({"_id": ObjectId(id)});
         } catch (e) {
             return { error: e.message };
         }

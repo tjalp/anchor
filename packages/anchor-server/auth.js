@@ -14,7 +14,7 @@ async function verifyUser(token) {
         return {authorised: true, payload: payload};
 
     } catch (e) {
-        console.log(e);
+        //console.log(e);
         return {authorised: false, error: e};
     }
 }

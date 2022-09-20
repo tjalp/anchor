@@ -1,7 +1,6 @@
 import React, { Component, useEffect, useState } from 'react';
 import jwt_decode from "jwt-decode";
 import axios from "axios";
-import { generateKeyPair } from 'crypto';
 
 function GoogleLogin() {
 
@@ -14,10 +13,15 @@ function GoogleLogin() {
     function login(credential) {
         axios.post(`${process.env.NEXT_PUBLIC_API_URL}/users/auth`, { token: credential }).then((response) => {
             if (!response.data.error) {
-                console.log(response.data);
+
                 localStorage.setItem("SignInInfo", credential);
                 setUser(jwt_decode(credential));
             } else {
+                if (response.data.reLogin) {
+                    localStorage.removeItem("SignInInfo");
+                    setUser([]);
+                    console.log("Please log in again!");
+                }
                 console.error(response.data.error);
             }
         }).catch((e) => {
