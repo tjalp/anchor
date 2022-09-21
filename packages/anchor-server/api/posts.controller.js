@@ -1,5 +1,6 @@
 import { response } from "express";
 import PostsDAO from "../dao/postsDAO.js";
+import { isAdminFromToken, verifyUser } from "../auth.js";
 
 export default class PostController {
     static async apiPostPost(req, res, next) {
@@ -7,15 +8,23 @@ export default class PostController {
             const title = req.body.title;
             const content = req.body.content;
             const author = req.body.author;
+            const token = req.body.token;
             const date = new Date();
 
-            const PostResponse = await PostsDAO.addPost(author, title, content, date);
-            if (!PostResponse.error) 
-            {
-                res.json({ status: "success", response: PostResponse });
+
+
+            if (await isAdminFromToken(token)) {
+                const PostResponse = await PostsDAO.addPost(author, title, content, date);
+                if (!PostResponse.error) 
+                {
+                    res.json({ status: "success", response: PostResponse });
+                } else {
+                    res.status(404).json({ status: "failed", error: PostResponse.error });
+                }
             } else {
-                res.status(404).json({ status: "failed", error: PostResponse.error });
+                res.status(403).json({ status: "failed", error: "Either the token is invalid or you're not an admin!" });
             }
+
         } catch (e) {
             res.status(500).json({ status: "failed", error: e.message });
         }
@@ -24,18 +33,25 @@ export default class PostController {
     static async apiUpdatePost(req, res, next) {
         try {
             const post_id = req.body.post_id;
-            let updateInfo = {};
-            if (req.body.title) {
-                updateInfo = {...updateInfo, title: req.body.title};
-            }
-            if (req.body.content) {
-                updateInfo = {...updateInfo, content: req.body.content};
-            }
-            const response = await PostsDAO.updatePost({post_id: post_id, updateProperties: updateInfo});
-            if (!response.error) {
-                res.json({ status: "success", response: response });
+            const token = req.body.token;
+
+            if (await isAdminFromToken(token)) 
+            {
+                let updateInfo = {};
+                if (req.body.title) {
+                    updateInfo = {...updateInfo, title: req.body.title};
+                }
+                if (req.body.content) {
+                    updateInfo = {...updateInfo, content: req.body.content};
+                }
+                const response = await PostsDAO.updatePost({post_id: post_id, updateProperties: updateInfo});
+                if (!response.error) {
+                    res.json({ status: "success", response: response });
+                } else {
+                    res.status(404).json({ status: "failed", error: response.error, respsone: response });
+                }
             } else {
-                res.status(404).json({ status: "failed", error: response.error, respsone: response });
+                res.status(403).json({ status: "failed", error: "Either the token is invalid or you're not an admin!" });
             }
             
         } catch (e) {
@@ -46,12 +62,17 @@ export default class PostController {
     static async apiDeletePost(req, res, next) {
         try {
             const post_id = req.body.post_id;
+            const token = req.body.token;
 
-            const response = await PostsDAO.deletePost(post_id);
-            if (!response.error) {
-                res.json({ status: "success", respsone: response });
-            } else {
-                res.status(404).json({ status: "failed", error: response.error, respsone: response });
+
+            if (await isAdminFromToken(token)) 
+            {
+                const response = await PostsDAO.deletePost(post_id);
+                if (!response.error) {
+                    res.json({ status: "success", respsone: response });
+                } else {
+                    res.status(404).json({ status: "failed", error: response.error, respsone: response });
+                }
             }
         } catch (e) {
             res.status(500).json({ status: "failed", error: e.message });

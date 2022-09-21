@@ -1,10 +1,12 @@
 import React, { Component, useEffect, useState } from 'react';
 import jwt_decode from "jwt-decode";
 import axios from "axios";
+import { useRouter } from 'next/router';
 
 function GoogleLogin() {
 
     const [user, setUser] = useState(null);
+    const Router = useRouter();
 
     function handleGooleLoginCallbackResponse(googleResponse) {
         login(googleResponse.credential);
@@ -14,11 +16,14 @@ function GoogleLogin() {
         axios.post(`${process.env.NEXT_PUBLIC_API_URL}/users/auth`, { token: credential }).then((response) => {
             if (!response.data.error) {
 
-                localStorage.setItem("SignInInfo", credential);
+                localStorage.setItem("SignInToken", credential);
                 setUser(jwt_decode(credential));
+                if (Router.query.r) {
+                    Router.push(Router.query.r);
+                }
             } else {
                 if (response.data.reLogin) {
-                    localStorage.removeItem("SignInInfo");
+                    localStorage.removeItem("SignInToken");
                     setUser([]);
                     console.log("Please log in again!");
                 }
@@ -37,7 +42,7 @@ function GoogleLogin() {
         google.accounts.id.renderButton(document.getElementById("signInDiv"), { theme: "outline", size: "large"});
 
 
-        const signInfo = localStorage.getItem("SignInInfo");
+        const signInfo = localStorage.getItem("SignInToken");
         if (signInfo) {
             login(signInfo);
         }
@@ -45,7 +50,7 @@ function GoogleLogin() {
 
     function handleSignOut(event) {
         setUser(null);
-        localStorage.removeItem("SignInInfo");
+        localStorage.removeItem("SignInToken");
     }
 
     
