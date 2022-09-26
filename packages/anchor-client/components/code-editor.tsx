@@ -2,7 +2,6 @@ import axios from "axios";
 import { useState } from "react";
 import CodeEditorWindow from "./code-editor-window";
 
-
 export default function CodeEditor() {
 
     const [code, setCode] = useState("// Enter javascript code here!")
