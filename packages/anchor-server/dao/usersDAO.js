@@ -12,7 +12,7 @@ export default class usersDAO {
         try {
             users = await conn.db(process.env.ANCHOR_NS).collection("users");
         } catch (e) {
-            console.error(`Failed to connect in postsDAO: ${e}`);
+            console.error(`Failed to connect in usersDAO: ${e}`);
         }
     }
 
@@ -34,7 +34,8 @@ export default class usersDAO {
                         "name": payload.name,
                         "given_name": payload.given_name,
                         "family_name": payload.family_name,
-                        "permission_level": "user"
+                        "permission_level": "user",
+                        "completedChallanges": []
                     });
                     return { response: userResponse };
                     
@@ -66,7 +67,8 @@ export default class usersDAO {
                 "name": user.name,
                 "given_name": user.given_name,
                 "family_name": user.family_name,
-                "permission_level": user.permission_level
+                "permission_level": user.permission_level,
+                "completedChallanges": user.completedChallanges
             });
         } else {
             return { error: user.error };

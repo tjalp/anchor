@@ -12,7 +12,6 @@ async function verifyUser(token) {
             audience: process.env.GOOGLE_CLIENT_ID
         });
         const payload = ticket.getPayload();
-        const userid = payload['sub'];
         return {authorised: true, payload: payload};
 
     } catch (e) {
