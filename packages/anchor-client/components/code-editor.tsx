@@ -15,11 +15,23 @@ export default function CodeEditor() {
     }
 
     function handleRunCode() {
-        axios.post(`${process.env.NEXT_PUBLIC_JUDGE0_API}/submissions`, {
-            source_code: code,
+        
+        axios.post(`${process.env.NEXT_PUBLIC_API_URL}/code`, {
+            source_code: btoa(code), // base64 encoded code
             language_id: 63
         }).then((response) => {
             console.log(response.data);
+            const codeToken = response.data.token;
+            setTimeout(() => {
+                axios.get(`${process.env.NEXT_PUBLIC_API_URL}/code?token=${codeToken}`).then((response) => {
+                    console.log(response.data);
+                    console.log(atob(response.data.stdout));
+                }).catch((e) => {
+                    console.log(e);
+                    
+                })
+            }, 5000)
+
         }).catch((e) => {
             console.log(e);
         })
