@@ -2,6 +2,7 @@ import express from "express";
 import postsController from "./posts.controller.js";
 import usersController from "./users.controller.js";
 import codeController from "./code.controller.js";
+import challangesController from "./challanges.controller.js";
 
 const router = express.Router();
 
@@ -18,5 +19,7 @@ router.route("/posts/id/:id")
 router.route("/users/auth").post(usersController.apiLoginUser);
 
 router.route("/code").post(codeController.sendCode).get(codeController.getCode);
+
+router.route("/challanges").post(challangesController.apiPostChallange).get(challangesController.getChallanges);
 
 export default router;
