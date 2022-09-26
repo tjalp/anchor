@@ -1,6 +1,7 @@
 import express from "express";
-import postsController from "./posts.controller.js"
+import postsController from "./posts.controller.js";
 import usersController from "./users.controller.js";
+import codeController from "./code.controller.js";
 
 const router = express.Router();
 
@@ -15,5 +16,7 @@ router.route("/posts/id/:id")
     .get(postsController.apiGetPostById);
 
 router.route("/users/auth").post(usersController.apiLoginUser);
+
+router.route("/code").post(codeController.sendCode).get(codeController.getCode);
 
 export default router;
