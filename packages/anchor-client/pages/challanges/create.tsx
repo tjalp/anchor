@@ -1,6 +1,6 @@
 import AnchorCard from "../../components/anchor-card";
 import axios from "axios";
-import CreateChallange from "../../components/createChallange";
+import CreateChallange from "../../components/create-challenge";
 
 
 export default function createChallange() {
