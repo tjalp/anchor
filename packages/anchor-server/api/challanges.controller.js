@@ -13,7 +13,7 @@ export default class challangesController {
         const token = req.body.token;
 
         if (isAdminFromToken(token)) {
-            const postResponse = challangesDAO.postChallange(title, desc, tests, rewards);
+            const postResponse = await challangesDAO.postChallange(title, desc, tests, rewards);
             if (!postResponse.error) {
                 res.json({ status: "success", response: postResponse });
             } else {
