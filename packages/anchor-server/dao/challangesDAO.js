@@ -10,7 +10,7 @@ export default class challangesDAO {
 
     static async injectDB(conn) {
         if (challanges) {
-            return
+            return;
         }
         try {
             challanges = await conn.db(process.env.ANCHOR_NS).collection("challanges");
