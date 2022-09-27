@@ -4,14 +4,17 @@ import LoginManager from "./loginManager";
 import jwt_decode from "jwt-decode";
 import Router from "next/router";
 import Head from "next/head";
+import LoadingIcon from "./loading-icon";
 
 export default function CreatePost() {
   const [postTile, setPostTitle] = useState("");
   const [postContent, setPostContent] = useState("");
+  const [loading, setLoading] = useState(false);
 
   function handleCreatePostButtonClick() {
     const token = localStorage.getItem("SignInToken");
     const decodedToken = jwt_decode<tokenPayload>(token);
+    setLoading(true);
 
     axios.post(`${process.env.NEXT_PUBLIC_API_URL}/posts`, {
       title: postTile,
@@ -19,12 +22,17 @@ export default function CreatePost() {
       author: decodedToken.name,
       token: token
     }).then((response) => {
+      setLoading(false);
       if (!response.data.error) {
         Router.push(`/posts/${response.data.response.insertedId}`);
       } else {
         console.log(response.data.error);
       }
-    }).catch((e) => { console.log(e); });
+    }).catch((e) => { 
+      console.log(e); 
+
+      setLoading(false);
+    });
   }
 
   return (
@@ -40,7 +48,8 @@ export default function CreatePost() {
       <textarea id="postTitle" value={postTile} onChange={(e) => { setPostTitle(e.target.value) }} />
       <h2 className="dark:text-slate-400">Content</h2>
       <textarea id="postContent" value={postContent} onChange={(e) => { setPostContent(e.target.value) }} />
-      <button onClick={handleCreatePostButtonClick}>Create post</button>
+      {loading && <div className="my-4 w-full flex items-center justify-center"><LoadingIcon /></div>}
+      {!loading && <button onClick={handleCreatePostButtonClick}>Create post</button>}
     </>
   )
 }
