@@ -19,7 +19,11 @@ export default function ChallangesList() {
         })
     }, [])
 
-    return (<div>
-        {challanges.map(c => <AnchorCard title={c.title} href={`/challanges/${c._id}`}>c.desc</AnchorCard>)}
-    </div>)
+    return (
+        <>
+            <div>
+                {challanges.map(c => <AnchorCard title={c.title} href={`/challanges/${c._id}`} key={c._id}>c.desc</AnchorCard>)}
+            </div>
+        </>
+    )
 }
