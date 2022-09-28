@@ -4,7 +4,7 @@ import LoginManager from "./loginManager";
 import jwt_decode from "jwt-decode";
 import Router from "next/router";
 import Head from "next/head";
-import ChallangeTest from "./challenge-test";
+import ChallangeTest from "./challangeTest";
 
 export default function CreateChallange() {
   const [challangeTitle, setChallangeTitle] = useState("");
