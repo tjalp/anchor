@@ -1,4 +1,4 @@
-import ChallangesList from "../../components/challenges-list";
+import ChallangesList from "../../components/challangesList";
 import LoginManager from "../../components/loginManager";
 import AnchorCard from "../../components/anchor-card";
 
