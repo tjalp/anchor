@@ -61,4 +61,18 @@ export default class challengesController {
     }
 
 
+
+    static async apiGetChallengeById(req, res, next) {
+        try {
+            const id = req.params.id || {};
+            const response = await challengesDAO.getChallengseById(id);
+            if (!response.error) {
+                res.json({ status: "success", challenge: response});
+            } else {
+                res.status(404).json({ status: "failed", error: response.error })
+            }
+        } catch(e) {
+            res.status(500).json({ status: "failed", error: e.message});
+        }
+    }
 }

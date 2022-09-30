@@ -86,4 +86,13 @@ export default class challengesDAO {
         }
     }
 
+
+    static async getChallengseById(id) {
+        try {
+            return await challenges.findOne({"_id": ObjectId(id)});
+        } catch (e) {
+            return { error: e.message };
+        }
+    }
+
 }

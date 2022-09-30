@@ -22,4 +22,6 @@ router.route("/code").post(codeController.sendCode).get(codeController.getCode);
 
 router.route("/challenges").post(challengesController.apiPostChallenge).get(challengesController.getChallenges);
 
+router.route("/challenges/id/:id").get(challengesController.apiGetChallengeById);
+
 export default router;
