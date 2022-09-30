@@ -467,10 +467,10 @@
   dependencies:
     state-local "^1.0.6"
 
-"@monaco-editor/react@^4.4.5":
-  version "4.4.5"
-  resolved "https://registry.yarnpkg.com/@monaco-editor/react/-/react-4.4.5.tgz#beabe491efeb2457441a00d1c7651c653697f65b"
-  integrity sha512-IImtzU7sRc66OOaQVCG+5PFHkSWnnhrUWGBuH6zNmH2h0YgmAhcjHZQc/6MY9JWEbUtVF1WPBMJ9u1XuFbRrVA==
+"@monaco-editor/react@^4.4.6":
+  version "4.4.6"
+  resolved "https://registry.yarnpkg.com/@monaco-editor/react/-/react-4.4.6.tgz#8ae500b0edf85276d860ed702e7056c316548218"
+  integrity sha512-Gr3uz3LYf33wlFE3eRnta4RxP5FSNxiIV9ENn2D2/rN8KgGAD8ecvcITRtsbbyuOuNkwbuHYxfeaz2Vr+CtyFA==
   dependencies:
     "@monaco-editor/loader" "^1.3.2"
     prop-types "^15.7.2"
@@ -1249,10 +1249,10 @@ doctrine@^3.0.0:
   dependencies:
     esutils "^2.0.2"
 
-dotenv@^16.0.2:
-  version "16.0.2"
-  resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-16.0.2.tgz#0b0f8652c016a3858ef795024508cddc4bffc5bf"
-  integrity sha512-JvpYKUmzQhYoIFgK2MOnF3bciIZoItIIoryihy0rIA+H4Jy0FmgyKYAHCTN98P5ybGSJcIFbh6QKeJdtZd1qhA==
+dotenv@^16.0.3:
+  version "16.0.3"
+  resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-16.0.3.tgz#115aec42bac5053db3c456db30cc243a5a836a07"
+  integrity sha512-7GO6HghkA5fYG9TYnNxi14/7K9f5occMlp3zXAuSxn7CKCxt9xbNWG7yF8hTCSUchlfWSe3uLmlPfigevRItzQ==
 
 ecdsa-sig-formatter@1.0.11, ecdsa-sig-formatter@^1.0.11:
   version "1.0.11"
@@ -1881,10 +1881,10 @@ globby@^11.1.0:
     merge2 "^1.4.1"
     slash "^3.0.0"
 
-google-auth-library@^8.5.1:
-  version "8.5.1"
-  resolved "https://registry.yarnpkg.com/google-auth-library/-/google-auth-library-8.5.1.tgz#83f78f93833e62f41c885bea601c4a5654934dd9"
-  integrity sha512-7jNMDRhenfw2HLfL9m0ZP/Jw5hzXygfSprzBdypG3rZ+q2gIUbVC/osrFB7y/Z5dkrUr1mnLoDNlerF+p6VXZA==
+google-auth-library@^8.5.2:
+  version "8.5.2"
+  resolved "https://registry.yarnpkg.com/google-auth-library/-/google-auth-library-8.5.2.tgz#bcdced8f7b475b80bf0e9c109c7c7e930866947b"
+  integrity sha512-FPfOSaI8n2TVXFHTP8/vAVFCXhyALj7w9/Rgefux3oeKZ/nQDNmfNTJ+lIKcoYT1cKkvMllp1Eood7Y5L+TP+A==
   dependencies:
     arrify "^2.0.0"
     base64-js "^1.3.0"
