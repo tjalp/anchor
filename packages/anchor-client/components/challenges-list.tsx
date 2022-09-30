@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import AnchorCard from "./anchor-card";
 
 
-export default function ChallangesList() {
+export default function ChallengesList() {
 
     const [challenges, setChallenges] = useState([]);
 
@@ -19,11 +19,7 @@ export default function ChallangesList() {
         })
     }, [])
 
-    return (
-        <>
-            <div>
-                {challenges.map(c => <AnchorCard title={c.title} href={`/challenges/${c._id}`} key={c._id}>c.desc</AnchorCard>)}
-            </div>
-        </>
-    )
+    return (<div>
+        {challenges.map(c => <AnchorCard title={c.title} href={`/challenges/${c._id}`}>c.desc</AnchorCard>)}
+    </div>)
 }

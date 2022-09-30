@@ -1,14 +1,14 @@
-import ChallangesList from "../../components/challangesList";
+import ChallengesList from "../../components/challenges-list";
 import LoginManager from "../../components/loginManager";
 import AnchorCard from "../../components/anchor-card";
 
-export default function challangesPage() {
+export default function challengesPage() {
 
 
     return (<div>
         <AnchorCard title="Go back" href="/">Go back to the home page</AnchorCard>
         <LoginManager />
-        <ChallangesList />
+        <ChallengesList />
     </div>)
 
 }

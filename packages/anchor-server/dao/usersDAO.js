@@ -35,7 +35,7 @@ export default class usersDAO {
                         "given_name": payload.given_name,
                         "family_name": payload.family_name,
                         "permission_level": "user",
-                        "completedChallanges": []
+                        "completedChallenges": []
                     });
                     return { response: userResponse };
                     
@@ -68,7 +68,7 @@ export default class usersDAO {
                 "given_name": user.given_name,
                 "family_name": user.family_name,
                 "permission_level": user.permission_level,
-                "completedChallanges": user.completedChallanges
+                "completedChallenges": user.completedChallenges
             });
         } else {
             return { error: user.error };

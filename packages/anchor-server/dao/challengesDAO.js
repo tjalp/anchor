@@ -4,27 +4,27 @@ import { isAdminFromToken } from "../auth.js";
 import usersDAO from "./usersDAO.js";
 
 
-let challanges;
+let challenges;
 
-export default class challangesDAO {
+export default class challengesDAO {
 
     static async injectDB(conn) {
-        if (challanges) {
+        if (challenges) {
             return;
         }
         try {
-            challanges = await conn.db(process.env.ANCHOR_NS).collection("challanges");
+            challenges = await conn.db(process.env.ANCHOR_NS).collection("challenges");
         } catch (e) {
-            console.error(`Failed to connect in challangesDAO: ${e}`);
+            console.error(`Failed to connect in challengesDAO: ${e}`);
         }
     }
 
-    static async postChallange(title, desc, tests, rewards) {
+    static async postChallenge(title, desc, tests, rewards) {
         if (!rewards) {
             rewards = []
         }
 
-        const challange = {
+        const challenge = {
             title: title,
             desc: desc,
             tests: tests,
@@ -32,17 +32,17 @@ export default class challangesDAO {
         }
 
         try {
-            return await challanges.insertOne(challange);
+            return await challenges.insertOne(challenge);
         } catch (e) {
             return { error: e };
         }
     }
 
 
-    static async getChallanges({
+    static async getChallenges({
         filters = null,
         page = 0,
-        challangesPerPage = 20,
+        challengesPerPage: challengesPerPage = 20,
         onlyIncomplete = false,
         user
     } = {}) {
@@ -56,8 +56,8 @@ export default class challangesDAO {
 
         if (onlyIncomplete && user) {
             try {
-                if (user.completedChallanges) {
-                    query = {...query, "_id": { "$nin": user.completedChallanges }};
+                if (user.completedChallenges) {
+                    query = {...query, "_id": { "$nin": user.completedChallenges }};
                 }
             } catch (e) {
                 console.log(e);
@@ -67,20 +67,20 @@ export default class challangesDAO {
         let cursor
 
         try {
-            cursor = await challanges.find(query);
+            cursor = await challnges.find(query);
         } catch (e) {
-            console.error(`Failed to use find in getChallanges in challangesDAO.js: ${e}`);
+            console.error(`Failed to use find in getchallenges in challengesDAO.js: ${e}`);
             return { postsList: [], total: 0 };
         }
         
 
-        const displayCursor = cursor.limit(challangesPerPage).skip(challangesPerPage * page);
+        const displayCursor = cursor.limit(challengesPerPage).skip(challengesPerPage * page);
 
         try {
-            const challangesList = await displayCursor.toArray();
-            const totalchallanges = await challanges.countDocuments(query);
+            const challengesList = await displayCursor.toArray();
+            const totalchallenges = await challenges.countDocuments(query);
 
-            return { challangesList, totalchallanges };
+            return { challengesList, totalchallenges };
         } catch (e) {
             console.error(`Failed to convert cursor to array or to count total documents: ${e}`);
         }
