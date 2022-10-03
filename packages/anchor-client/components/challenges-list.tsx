@@ -20,6 +20,6 @@ export default function ChallengesList() {
     }, [])
 
     return (<div>
-        {challenges.map(c => <AnchorCard title={c.title} href={`/challenges/${c._id}`}>c.desc</AnchorCard>)}
+        {challenges.map(c => <AnchorCard title={c.title} href={`/challenges/${c._id}`}>{c.desc}</AnchorCard>)}
     </div>)
 }
