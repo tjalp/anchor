@@ -10,10 +10,13 @@ export default class challengesController {
         const desc = req.body.desc;
         const tests = req.body.tests;
         const rewards = req.body.rewards;
+        const functionName = req.body.functionName;
+        const args = req.body.args;
         const token = req.body.token;
+        
 
         if (isAdminFromToken(token)) {
-            const postResponse = await challengesDAO.postChallenge(title, desc, tests, rewards);
+            const postResponse = await challengesDAO.postChallenge(title, desc, tests, rewards, args, functionName);
             if (!postResponse.error) {
                 res.json({ status: "success", response: postResponse });
             } else {
@@ -29,6 +32,7 @@ export default class challengesController {
         const page = req.query.page ? parseInt(req.query.page, 10) : 0;
         const onlyIncomplete = req.body.onlyIncomplete;
         const token = req.body.token;
+        
 
 
 

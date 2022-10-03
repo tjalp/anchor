@@ -10,6 +10,7 @@ export default function CreateChallenge() {
   const [challengeTitle, setChallengeTitle] = useState("");
   const [challengeDesc, setChallengeDesc] = useState("");
   const [tests, setTests] = useState([]);
+  const [functionName, setFunctionName] = useState("");
 
   function handleCreateChallengeButtonClick() {
     const token = localStorage.getItem("SignInToken");
@@ -19,6 +20,8 @@ export default function CreateChallenge() {
       desc: challengeDesc,
       tests: tests,
       rewards: [],
+      functionName: functionName,
+      args: tests[0].stdin.split("|").length, 
       token: token
     }).then((response) => {
       if (!response.data.error) {
@@ -49,8 +52,10 @@ export default function CreateChallenge() {
       </div>
       <h2 className="dark:text-slate-400">Title</h2>
       <textarea id="challengeTitle" value={challengeTitle} onChange={(e) => { setChallengeTitle(e.target.value) }} />
-      <h2 className="dark:text-slate-400">Content</h2>
+      <h2 className="dark:text-slate-400">Description</h2>
       <textarea id="challengeDesc" value={challengeDesc} onChange={(e) => { setChallengeDesc(e.target.value) }} />
+      <h2 className="dark:text-slate-400">Function name</h2>
+      <textarea id="challengeDesc" value={functionName} onChange={(e) => { setFunctionName(e.target.value) }} />
       <ChallengeTest changeEvent={handleTestsUpdate} index={0} />
       <button className="dark:text-slate-400" onClick={handleCreateChallengeButtonClick}>Create challenge</button>
     </>

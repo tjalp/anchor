@@ -19,7 +19,7 @@ export default class challengesDAO {
         }
     }
 
-    static async postChallenge(title, desc, tests, rewards) {
+    static async postChallenge(title, desc, tests, rewards, args, functionName) {
         if (!rewards) {
             rewards = []
         }
@@ -28,7 +28,9 @@ export default class challengesDAO {
             title: title,
             desc: desc,
             tests: tests,
-            rewards: rewards
+            rewards: rewards,
+            args: args,
+            functionName: functionName
         }
 
         try {
