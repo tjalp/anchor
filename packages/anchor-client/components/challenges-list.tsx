@@ -23,7 +23,7 @@ export default function ChallengesList() {
     <>
       {challenges.length === 0 && <div className="my-4 w-full flex items-center justify-center"><LoadingIcon /></div>}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 p-0 my-4">
-        {challenges.map(c => <AnchorCard title={c.title} href={`/challenges/${c._id}`}>{c.desc}</AnchorCard>)}
+        {challenges.map(c => <AnchorCard title={c.title} href={`/challenges/${c._id}`} key={c._id}>{c.desc}</AnchorCard>)}
       </div>
     </>
   )
