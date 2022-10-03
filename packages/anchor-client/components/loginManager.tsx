@@ -22,7 +22,7 @@ export default function LoginManager() {
                     router.push(`/login?r=${router.pathname}`);
                 });
             } else {
-                router.push(`/loginr=${router.pathname}`);
+                router.push(`/login?r=${router.pathname}`);
             }
         }
     }, [router.isReady])
