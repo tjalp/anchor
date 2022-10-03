@@ -24,6 +24,7 @@ const Home: NextPageWithLayout = () => {
         <AnchorCard title="Create post" href="/posts/create">You must be admin and backend must be running</AnchorCard>
         <AnchorCard title="Open editor" href="/editor">Open code editor</AnchorCard>
         <AnchorCard title="Create challenge" href="/challenges/create">Create a new challenge, you must be admin and backend must be running</AnchorCard>
+        <AnchorCard title="Challenges" href="/challenges">View challenges</AnchorCard>
       </div>
     </>
   )
