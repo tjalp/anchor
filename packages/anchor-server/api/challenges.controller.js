@@ -69,7 +69,7 @@ export default class challengesController {
             if (!response.error) {
                 res.json({ status: "success", challenge: response});
             } else {
-                res.status(404).json({ status: "failed", error: response.error })
+                res.status(404).json({ status: "failed", error: response.error });
             }
         } catch(e) {
             res.status(500).json({ status: "failed", error: e.message});
