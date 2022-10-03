@@ -54,7 +54,7 @@ export default class challengesController {
             challenges: challengesList,
             page: page,
             filters: filters,
-            entries_per_page: postsPerPage,
+            entries_per_page: challengesPerPage,
             total_results: totalChallenges
         }
         res.json(response);

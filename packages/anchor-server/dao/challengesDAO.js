@@ -67,7 +67,7 @@ export default class challengesDAO {
         let cursor
 
         try {
-            cursor = await challnges.find(query);
+            cursor = await challenges.find(query);
         } catch (e) {
             console.error(`Failed to use find in getchallenges in challengesDAO.js: ${e}`);
             return { postsList: [], total: 0 };

@@ -20,7 +20,7 @@ const Home: NextPageWithLayout = () => {
         <AnchorCard title="404" href="/404">Navigate to a non-existent page</AnchorCard>
         <AnchorCard title="Login" href="/login">Login with google</AnchorCard>
         <AnchorCard title="Posts" href="/posts">View posts</AnchorCard>
-        <AnchorCard title="iets" href="/iets">iets</AnchorCard>
+        <AnchorCard title="Challenges" href="/challenges">See a list of challenges</AnchorCard>
         <AnchorCard title="Create post" href="/posts/create">You must be admin and backend must be running</AnchorCard>
         <AnchorCard title="Open editor" href="/editor">Open code editor</AnchorCard>
         <AnchorCard title="Create challenge" href="/challenges/create">Create a new challenge, you must be admin and backend must be running</AnchorCard>
