@@ -12,11 +12,12 @@ export default class challengesController {
         const rewards = req.body.rewards;
         const functionName = req.body.functionName;
         const args = req.body.args;
+        const templateCode = req.body.templateCode;
         const token = req.body.token;
         
 
         if (isAdminFromToken(token)) {
-            const postResponse = await challengesDAO.postChallenge(title, desc, tests, rewards, args, functionName);
+            const postResponse = await challengesDAO.postChallenge(title, desc, tests, rewards, args, functionName, templateCode);
             if (!postResponse.error) {
                 res.json({ status: "success", response: postResponse });
             } else {

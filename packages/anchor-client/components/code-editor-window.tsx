@@ -18,7 +18,7 @@ export default function CodeEditorWindow({ onChange, language, code, theme }) {
         language={language || "javascript"}
         value={value}
         theme={theme}
-        defaultValue="// some comment"
+        defaultValue={code || "// some comment"}
         onChange={handleEditorChange}
       />
     </div>

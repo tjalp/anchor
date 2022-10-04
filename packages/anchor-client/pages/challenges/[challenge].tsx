@@ -30,6 +30,7 @@ export default function ChallengePage() {
                 setTests(response.data.challenge.tests);
                 setFunctionName(response.data.challenge.functionName);
                 setArgs(response.data.challenge.args);
+                setCode(response.data.challenge.templateCode);
             }).catch((e) => {
                 console.log(e);
             })

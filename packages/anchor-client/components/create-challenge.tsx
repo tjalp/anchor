@@ -5,12 +5,14 @@ import jwt_decode from "jwt-decode";
 import Router from "next/router";
 import Head from "next/head";
 import ChallengeTest from "./challenge-test";
+import CodeEditorWindow from "./code-editor-window";
 
 export default function CreateChallenge() {
   const [challengeTitle, setChallengeTitle] = useState("");
   const [challengeDesc, setChallengeDesc] = useState("");
   const [tests, setTests] = useState([]);
   const [functionName, setFunctionName] = useState("");
+  const [templateCode, setTemplateCode] = useState("");
 
   function handleCreateChallengeButtonClick() {
     const token = localStorage.getItem("SignInToken");
@@ -22,6 +24,7 @@ export default function CreateChallenge() {
       rewards: [],
       functionName: functionName,
       args: tests[0].stdin.split("|").length, 
+      templateCode: templateCode,
       token: token
     }).then((response) => {
       if (!response.data.error) {
@@ -41,6 +44,14 @@ export default function CreateChallenge() {
   }
 
 
+  function onCodeChange(action, data) {
+    if (action == "code") {
+      setTemplateCode(data);
+    } else {
+      console.log(`unhandled action case: ${action}`);
+    }
+  }
+
   return (
     <>
       <Head>
@@ -57,6 +68,8 @@ export default function CreateChallenge() {
       <h2 className="dark:text-slate-400">Function name</h2>
       <textarea id="challengeDesc" value={functionName} onChange={(e) => { setFunctionName(e.target.value) }} />
       <ChallengeTest changeEvent={handleTestsUpdate} index={0} />
+      <h2  className="dark:text-slate-400">template code:</h2>
+      <CodeEditorWindow onChange={onCodeChange} language="javascript" code={templateCode} theme="vs-dark" />
       <button className="dark:text-slate-400" onClick={handleCreateChallengeButtonClick}>Create challenge</button>
     </>
   )

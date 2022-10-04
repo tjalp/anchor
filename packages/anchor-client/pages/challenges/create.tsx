@@ -1,6 +1,8 @@
 import AnchorCard from "../../components/anchor-card";
 import axios from "axios";
 import CreateChallenge from "../../components/create-challenge";
+import { ReactElement } from "react";
+import Layout from "../../components/layouts/default";
 
 
 export default function createChallenge() {
@@ -13,3 +15,11 @@ export default function createChallenge() {
         <CreateChallenge />
     </div>)
 }
+
+createChallenge.getLayout = function getLayout(page: ReactElement) {
+    return (
+      <Layout>
+        {page}
+      </Layout>
+    )
+  }
