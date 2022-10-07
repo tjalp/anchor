@@ -13,6 +13,7 @@ export default class challengesController {
         const functionName = req.body.functionName;
         const args = req.body.args;
         const templateCode = req.body.templateCode;
+        const completedUsers = [];
         const token = req.body.token;
         
 
@@ -70,7 +71,7 @@ export default class challengesController {
     static async apiGetChallengeById(req, res, next) {
         try {
             const id = req.params.id || {};
-            const response = await challengesDAO.getChallengseById(id);
+            const response = await challengesDAO.getChallengeById(id);
             if (!response.error) {
                 res.json({ status: "success", challenge: response});
             } else {
@@ -78,6 +79,38 @@ export default class challengesController {
             }
         } catch(e) {
             res.status(500).json({ status: "failed", error: e.message});
+        }
+    }
+
+
+    static async apiCompleteChallange(req, res, next) {
+        const challengeID = req.challenge;
+        const token = req.token;
+
+        const authResponse = await verifyUser(token);
+        if (authResponse.authorised) {
+            const userObject = usersDAO.getUserByGoogleId(authResponse.payload.sub);
+            if (!userObject.error) {
+                const challengeObject = challengesDAO.getChallengeById(challengeID);
+                if (!challengeObject.error) {
+                    if (challengeObject.completedUsers.indexOf(userObject._id) == -1) {
+                        const completeResponse = challengesDAO.completeChallenge(challengeObject._id, userObject._id);
+                        if (!completeResponse.error) {
+
+                        } else {
+                            res.status(500).json({status: "failed", error: completeResponse.error});
+                        }
+                    } else {
+                        res.status(400).json({status: "failed", error: "Challenge has already been completed by this user"});
+                    }
+                } else {
+                    res.status(404).json({status: "failed", error: challengeObject.error});
+                }
+            } else {
+                res.status(404).json({status: "failed", error: userObject.error});
+            }
+        } else {
+            res.status(401).json({status: "failed", error: "Token is invalid or expired"});
         }
     }
 }
