@@ -10,6 +10,8 @@ export default function CodeEditorWindow({ onChange, language, code, theme }) {
     onChange("code", value);
   };
 
+
+  
   return (
     <div className="overlay rounded-md overflow-hidden w-full h-full shadow-4xl dark:shadow-zinc-900">
       <Editor
@@ -18,7 +20,7 @@ export default function CodeEditorWindow({ onChange, language, code, theme }) {
         language={language || "javascript"}
         value={value}
         theme={theme}
-        defaultValue={code || "// some comment"}
+        defaultValue={code}
         onChange={handleEditorChange}
       />
     </div>

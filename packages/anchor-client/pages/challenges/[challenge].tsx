@@ -25,12 +25,15 @@ export default function ChallengePage() {
     useEffect(() => {
         if (router.isReady) {
             axios.get(`${process.env.NEXT_PUBLIC_API_URL}/challenges/id/${router.query.challenge}`).then((response) => {
+                
                 setTitle(response.data.challenge.title);
                 setDesc(response.data.challenge.desc);
                 setTests(response.data.challenge.tests);
                 setFunctionName(response.data.challenge.functionName);
                 setArgs(response.data.challenge.args);
                 setCode(response.data.challenge.templateCode);
+                this.refs.monaco.editor.setValue(response.data.challenge.templateCode);
+
             }).catch((e) => {
                 console.log(e);
             })
@@ -105,11 +108,7 @@ export default function ChallengePage() {
         let passed = []
         if (results.length == tests.length) {
             for (let i = 0; i < tests.length; i++) {
-                if (tests[i].stdout.replace(/\n/g, '') == results[i].replace(/\n/g, '')) {
-                    passed.push({passed: true, index: i});
-                } else {
-                    passed.push({passed: false, index: i});
-                }
+                passed.push({passed: tests[i].stdout.replace(/\n/g, '') == results[i].replace(/\n/g, ''), index: i});
             }
         } else {
             console.error("Results amount is not the same as the amount of tests");

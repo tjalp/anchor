@@ -90,12 +90,19 @@ export default class challengesDAO {
     }
 
 
-    static async getChallengseById(id) {
+    static async getChallengeById(id) {
         try {
             return await challenges.findOne({"_id": ObjectId(id)});
         } catch (e) {
-            return { error: e.message };
+            return { error: e };
         }
     }
-
+    
+    static async completeChallenge(id, userID) {
+        try {
+            return await challenges.updateOne({"_id": id}, {$push: {completedChallenges: userID}});
+        } catch (e) {
+            return {error: e};
+        }
+    }
 }
