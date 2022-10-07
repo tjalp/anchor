@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React, { useState } from "react";
 export default function SideBar(){
     
@@ -6,13 +7,13 @@ export default function SideBar(){
     return(
         <div className="float-left object-scale-down bg-slate-50 outline outline-1 outline-slate-300 outline-offset-2 grid divide-y select-none">
             <div className="">
-                <div className="m-5 text-3xl font-black bg-gradient-to-br from-[#ee0979] to-[#ff6a00] bg-clip-text text-transparent"><a href="/home">⚓Anchor.</a></div>
-                <div className={style}><a>Home</a></div>
-                <div className={style}><a>Posts</a></div>
-                <div className={style}><a>Challenges</a></div>
-                <div className={style}><a>Tutorials</a></div>
+                <div className="m-5 text-3xl font-black bg-gradient-to-br from-[#ee0979] to-[#ff6a00] bg-clip-text text-transparent"><Link href="/home">⚓Anchor.</Link></div>
+                <Link href="./"><div className={style}>Home</div></Link>
+                <Link href="./posts"><div className={style}>Posts</div></Link>
+                <Link href="./challenges"><div className={style}>Challenges</div></Link>
+                <Link href="./tutorials"><div className={style}>Tutorials</div></Link>
             </div>
-            <div>hoi</div>
+            <div className="hover:text-xl">hoi</div>
           </div>
     )
 }
