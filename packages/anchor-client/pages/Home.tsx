@@ -12,7 +12,8 @@ export default function iets(){
         <Head>
           <title>⚓Anchor</title>
         </Head>
-        <SideBar></SideBar> 
+        <SideBar></SideBar>
+        <p>ha</p>
       </>
     )
 }
