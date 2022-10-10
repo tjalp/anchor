@@ -24,10 +24,10 @@ export default class codeController {
           };
           
           axios.request(options).then(function (response) {
-              console.log(response.data);
+              //console.log(response.data);
               res.json(response.data)
           }).catch(function (error) {
-              console.error(error);
+              //console.error(error);
               res.status(500).json({error: error });
           });
 

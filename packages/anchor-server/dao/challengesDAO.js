@@ -31,7 +31,8 @@ export default class challengesDAO {
             rewards: rewards,
             args: args,
             functionName: functionName,
-            templateCode: templateCode
+            templateCode: templateCode,
+            completedUsers: []
         }
 
         try {
@@ -100,7 +101,7 @@ export default class challengesDAO {
     
     static async completeChallenge(id, userID) {
         try {
-            return await challenges.updateOne({"_id": id}, {$push: {completedChallenges: userID}});
+            return await challenges.updateOne({"_id": id}, {$addToSet: {completedUsers: userID}});
         } catch (e) {
             return {error: e};
         }

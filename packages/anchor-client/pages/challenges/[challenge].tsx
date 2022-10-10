@@ -16,9 +16,12 @@ export default function ChallengePage() {
     const [tests, setTests] = useState([]);
     const [output, setOutput] = useState("Press run");
     const [passes, setPasses] = useState([]);
+    const [completedUsers, setCompletedUsers] = useState([]);
 
     const [functionName, setFunctionName] = useState("");
     const [args, setArgs] = useState(0);
+    const [completedChallenge, setCompletedChallenge] = useState(false);
+    const [userID, setUserID] = useState("");
     
     
 
@@ -32,11 +35,27 @@ export default function ChallengePage() {
                 setFunctionName(response.data.challenge.functionName);
                 setArgs(response.data.challenge.args);
                 setCode(response.data.challenge.templateCode);
-                this.refs.monaco.editor.setValue(response.data.challenge.templateCode);
+                setCompletedUsers(response.data.challenge.completedUsers);
+                
 
             }).catch((e) => {
                 console.log(e);
-            })
+            });
+            if (localStorage.getItem("SignInToken") != null) {
+                axios.post(`${process.env.NEXT_PUBLIC_API_URL}/users/auth`, {token: localStorage.getItem("SignInToken")}).then((response) => {
+                    if (!response.data.error) {
+                        setUserID(response.data.userID);
+                    } else {
+                        console.error(response.data.error);
+                        router.push(`/login?r=${router.pathname}`);
+                    }
+                }).catch((e) => {
+                    console.error(e);
+                    router.push(`/login?r=${router.pathname}`);
+                });
+            } else {
+                router.push(`/login?r=${router.pathname}`);
+            }
         }
     }, [router.isReady]);
 
@@ -87,7 +106,26 @@ export default function ChallengePage() {
                             const out = atob(response2.data.stdout);
                             const exportedData = out.substring(out.lastIndexOf("DATAEXPORT|") + "DATAEXPORT|".length);
                             setOutput(exportedData);
-                            setPasses(checkTestsPass(exportedData));
+                            const passes = checkTestsPass(exportedData);
+                            setPasses(passes);
+
+                            let completed = true;
+                            for (let i = 0; i < passes.length; i++) {
+                                if (!passes[i].passed) {
+                                    completed = false;
+                                }
+                            }
+                            setCompletedChallenge(completed);
+                            if (localStorage.getItem("SignInToken")) {
+                                axios.post(`${process.env.NEXT_PUBLIC_API_URL}/challenges/complete`, {token: localStorage.getItem("SignInToken"), challenge: router.query.challenge}).then((response) => {
+                                    router.push("/challenges");
+                                }).catch((e) => {
+                                    console.error(e);
+                                });
+                            } else {
+                                router.push(`/login?r=${router.pathname}`);
+                            }
+
                         } else {
                             setOutput(`CODE ERROR: ${atob(response2.data.stderr)}`);
                         }
@@ -118,17 +156,17 @@ export default function ChallengePage() {
 
 
     return (<div>
-        <LoginManager />
         <AnchorCard title="Go back" href="/challenges">Go back to challenges</AnchorCard>
         <h1 className="dark:text-slate-200">{title}</h1>
         <p className="dark:text-slate-200">{desc}</p>
-        <CodeEditorWindow language="javascript" code={code} theme="vs-dark" onChange={onChange} />
+        {title ? <CodeEditorWindow language="javascript" code={code} theme="vs-dark" onChange={onChange} /> : null}
         <button className="dark:text-slate-400" onClick={handleRunCode}>Run</button>
         <p className="bg-black text-white">{output}</p>
         <br />
         <p className="dark:text-slate-200">Tests:</p>
         {passes.map((p) => <p className="dark:text-slate-200" key={p.index}>Passed {p.index}: {p.passed ? "yes" : "no"}</p>)}
         {tests.map((t) => <div key = {t.stdin} className="text-slate-200"><p>input: {t.stdin}</p><p>output: {t.stdout}</p></div>)}
+        <p className="dark:text-slate-200">completed: {completedChallenge ? "yes" : completedUsers.includes(userID) ? "yes" : "no"}</p>
     </div>)
 }
 

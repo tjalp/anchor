@@ -84,24 +84,19 @@ export default class challengesController {
 
 
     static async apiCompleteChallange(req, res, next) {
-        const challengeID = req.challenge;
-        const token = req.token;
-
+        const challengeID = req.body.challenge;
+        const token = req.body.token;
         const authResponse = await verifyUser(token);
         if (authResponse.authorised) {
-            const userObject = usersDAO.getUserByGoogleId(authResponse.payload.sub);
+            const userObject = await usersDAO.getUserByGoogleId(authResponse.payload.sub);
             if (!userObject.error) {
-                const challengeObject = challengesDAO.getChallengeById(challengeID);
+                const challengeObject = await challengesDAO.getChallengeById(challengeID);
                 if (!challengeObject.error) {
-                    if (challengeObject.completedUsers.indexOf(userObject._id) == -1) {
-                        const completeResponse = challengesDAO.completeChallenge(challengeObject._id, userObject._id);
-                        if (!completeResponse.error) {
-
-                        } else {
-                            res.status(500).json({status: "failed", error: completeResponse.error});
-                        }
+                    const completeResponse = await challengesDAO.completeChallenge(challengeObject._id, userObject._id);
+                    if (!completeResponse.error) {
+                        res.json({ status: "success", response: completeResponse });
                     } else {
-                        res.status(400).json({status: "failed", error: "Challenge has already been completed by this user"});
+                        res.status(500).json({ status: "failed", error: completeResponse.error });
                     }
                 } else {
                     res.status(404).json({status: "failed", error: challengeObject.error});

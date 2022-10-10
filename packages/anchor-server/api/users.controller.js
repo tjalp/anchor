@@ -16,14 +16,14 @@ export default class usersController {
                     // register user
                     const registerResponse = await usersDAO.registerUser(req.body.token);
                     if (!registerResponse.error) {
-                        res.json({status: "success", response: registerResponse.response});
+                        res.json({status: "success", response: registerResponse.response, userID: registerResponse.insertedID});
                     } else {
                         res.status(500).json({ status: "failed", error: registerResponse.error });
                     }
                 } else {
                     if (!currentUser.error) {
                         // login user
-                        res.json({ status: "success", userData: currentUser });
+                        res.json({ status: "success", response: currentUser, userID: currentUser._id });
                     } else {
                         res.status(500).json({ status: "failed", error: currentUser.error });
                     }
