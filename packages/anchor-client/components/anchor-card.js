@@ -13,6 +13,7 @@ export default function AnchorCard({ title, href, children }) {
           shrink-0
           p-4
           text-left
+          h-full
           hover:shadow-lg
           hover:cursor-pointer
           hover:-translate-y-0.5
