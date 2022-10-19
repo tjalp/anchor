@@ -2,11 +2,11 @@ import Link from "next/link";
 import React, { useState } from "react";
 export default function SideBar(){
     
-    const [buttonStyle] = useState("m-2 p-4 text-xl dark:text-white border border-offset-5 border-transparent rounded-lg hover:bg-slate-200 dark:hover:bg-neutral-600")
-    const [dropMenuStyle] = useState("p-4 text-lg dark:text-white border border-offset-4 border-transparent rounded-lg hover:bg-slate-300 dark:hover:bg-neutral-700")
+    const [buttonStyle] = useState("m-2 p-4 text-xl dark:text-white border border-offset-5 border-transparent rounded-lg hover:bg-slate-200 dark:hover:bg-neutral-600 cursor-pointer")
+    const [dropMenuStyle] = useState("p-4 text-lg dark:text-white border border-offset-4 border-transparent rounded-lg hover:bg-slate-300 dark:hover:bg-neutral-700 cursor-pointer")
 
     return(
-        <div className="object-left-top max-w-fit h-screen mr-10 object-scale-down bg-slate-50 dark:bg-neutral-900 outline outline-1 outline-slate-300 dark:outline-neutral-600 outline-offset-2 select-none">
+        <div className="object-left-top max-w-min mr-16 object-scale-down bg-slate-50 dark:bg-neutral-900 outline outline-1 outline-slate-300 dark:outline-neutral-600 outline-offset-2">
             <div>
                 <div className="p-5 text-3xl font-black bg-gradient-to-br from-[#ee0979] to-[#ff6a00] bg-clip-text text-transparent"><Link href="/home">⚓Anchor.</Link></div>
                 <Link href="./"><div className={buttonStyle}>Home</div></Link>
