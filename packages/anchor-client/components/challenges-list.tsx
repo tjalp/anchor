@@ -1,14 +1,16 @@
 import axios from "axios";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import AnchorCard from "./anchor-card";
 import LoadingIcon from "./loading-icon";
+import Link from "next/link"
 
-export default function ChallengesList() {
+export default function ChallengesList({challenge_id, title, description}) {
 
   const [challenges, setChallenges] = useState([]);
   const [userID, setUserID] = useState("");
   const router = useRouter();
+  const [challengeTitle, setChallengeTitle] = useState("Placeholder title");
+  const [challengeDescription, setChallengeDescription] = useState("Placeholder content");
 
   useEffect(() => {
     if (router.isReady) {
@@ -43,11 +45,11 @@ export default function ChallengesList() {
   }, [router.isReady])
 
   return (
-    <>
-      {challenges.length === 0 && <div className="my-4 w-full flex items-center justify-center"><LoadingIcon /></div>}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 p-0 my-4">
-        {challenges.map(c => <AnchorCard title={c.title} href={`/challenges/${c._id}`} key={c._id}>{c.desc} <br /> completed: {c.completedUsers ? c.completedUsers.includes(userID) ? "yes" : "no" : "unknown"}</AnchorCard>)}
+    <Link href={`/challenges/${challenge_id}`}>
+      <div className="my-4 p-5 border border-slate-200 dark:border-neutral-600 bg-slate-50 dark:bg-zinc-700 rounded-lg hover:bg-slate-200 dark:hover:bg-zinc-600 cursor-pointer">
+          <div className="text-2xl text-slate-900 dark:text-neutral-50">{title}</div>
+          <div className="text-lg text-slate-600 dark:text-neutral-400">{description}</div>
       </div>
-    </>
+    </Link>
   )
 }

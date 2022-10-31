@@ -26,7 +26,7 @@ export default function iets(){
           <title>⚓Anchor</title>
         </Head>
         <div className="flex flex-row flex-nowrap h-screen select-none">
-          <SideBar></SideBar>
+          <SideBar />
           <div className="float-right mt-14 max-w-16">
             <div>{posts.map(p => <Post title={p.title} content={p.content} post_id={p._id} key={p._id}/>)}</div>
           </div>
