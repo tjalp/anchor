@@ -1,11 +1,12 @@
 import ChallengesList from "../../components/challenges-list";
 import LoginManager from "../../components/loginManager";
 import { NextPageWithLayout } from "../_app";
-import { ReactElement, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import SideBar from "../../components/sideBar";
+import Head from "next/head";
 
-const Challenges: NextPageWithLayout = () => {
+export default function challenges(){
 
   const [challenges, setChallenges] = useState([]);
 
@@ -22,14 +23,17 @@ const Challenges: NextPageWithLayout = () => {
   }, [])
 
   return(
-    <>
+  <>  
+    <Head>
+      <title>⚓Challenges</title>
+    </Head>
+    <LoginManager />
+    <div className="flex flex-row flex-nowrap h-screen select-none">
       <SideBar />
-      <LoginManager />
       <div className="float-right mt-14 max-w-16">
-          <div>{challenges.map(c => <ChallengesList title={c.title} description={c.description} challenge_id={c._id} key={c._id}/>)}</div>
+        <div>{challenges.map(c => <ChallengesList title={c.title} desc={c.desc} challenge_id={c._id} key={c._id}/>)}</div>
       </div>
-    </>
+    </div>
+  </>
   )
 }
-
-export default Challenges

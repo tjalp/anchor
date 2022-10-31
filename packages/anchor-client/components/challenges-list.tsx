@@ -1,10 +1,9 @@
 import axios from "axios";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import LoadingIcon from "./loading-icon";
 import Link from "next/link"
 
-export default function ChallengesList({challenge_id, title, description}) {
+export default function ChallengesList({challenge_id, title, desc}) {
 
   const [challenges, setChallenges] = useState([]);
   const [userID, setUserID] = useState("");
@@ -48,7 +47,7 @@ export default function ChallengesList({challenge_id, title, description}) {
     <Link href={`/challenges/${challenge_id}`}>
       <div className="my-4 p-5 border border-slate-200 dark:border-neutral-600 bg-slate-50 dark:bg-zinc-700 rounded-lg hover:bg-slate-200 dark:hover:bg-zinc-600 cursor-pointer">
           <div className="text-2xl text-slate-900 dark:text-neutral-50">{title}</div>
-          <div className="text-lg text-slate-600 dark:text-neutral-400">{description}</div>
+          <div className="text-lg text-slate-600 dark:text-neutral-400">{desc}</div>
       </div>
     </Link>
   )

@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Post from "../components/postComponent.js";
-import LoadingIcon from "./loading-icon.tsx";
 
-export default function PostsList(amount, page) {
+export default function PostsList(amount) {
   const [posts, setPosts] = useState([])
 
   useEffect(() => {
@@ -18,9 +17,9 @@ export default function PostsList(amount, page) {
 
   return (
     <>
-      {posts.length === 0 && <div className="my-4 w-full flex items-center justify-center"><LoadingIcon /></div>}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 p-0 my-4">
-        {posts.map(p => <Post title={p.title} content="" post_id={p._id} key={p._id} />)}
+      <div className="float-right mt-14 mx-14 max-w-16 h-5/7 overflow-y-scroll">
+        <p className="text-lg text-slate-600 dark:text-neutral-400">Alle posts</p>
+        <div>{posts.map(p => <Post title={p.title} content={p.content} post_id={p._id} key={p._id}/>)}</div>
       </div>
     </>
   )
