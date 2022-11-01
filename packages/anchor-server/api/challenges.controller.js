@@ -87,25 +87,31 @@ export default class challengesController {
         const challengeID = req.body.challenge;
         const token = req.body.token;
         const authResponse = await verifyUser(token);
-        if (authResponse.authorised) {
-            const userObject = await usersDAO.getUserByGoogleId(authResponse.payload.sub);
-            if (!userObject.error) {
-                const challengeObject = await challengesDAO.getChallengeById(challengeID);
-                if (!challengeObject.error) {
-                    const completeResponse = await challengesDAO.completeChallenge(challengeObject._id, userObject._id);
-                    if (!completeResponse.error) {
-                        res.json({ status: "success", response: completeResponse });
-                    } else {
-                        res.status(500).json({ status: "failed", error: completeResponse.error });
-                    }
-                } else {
-                    res.status(404).json({status: "failed", error: challengeObject.error});
-                }
-            } else {
-                res.status(404).json({status: "failed", error: userObject.error});
-            }
-        } else {
+        if (!authResponse.authorised) {
             res.status(401).json({status: "failed", error: "Token is invalid or expired"});
+            return;
         }
+
+        const userObject = await usersDAO.getUserByGoogleId(authResponse.payload.sub);
+
+        if (userObject.error) {
+            res.status(404).json({ status: "failed", error: userObject.error });
+            return;
+        }
+
+        const challengeObject = await challengesDAO.getChallengeById(challengeID);
+        if (challengeObject.error) {
+            res.status(404).json({ status: "failed", error: challengeObject.error });
+            return;
+        }
+
+        const completeResponse = await challengesDAO.completeChallenge(challengeObject._id, userObject._id);
+        if (completeResponse.error) {
+            res.status(500).json({ status: "failed", error: completeResponse.error });
+            return;
+        }
+
+        res.json({ status: "success", response: completeResponse });
+        
     }
 }

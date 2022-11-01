@@ -2,21 +2,25 @@ import { useState } from "react"
 
 
 
-export default function ChallengeTest({ changeEvent, index }) {
-    const [testStdIn, setTestStdIn] = useState("");
-    const [testStdOut, setTestStdOut] = useState("");
+export default function ChallengeTest({ changeEvent, index, testsArray }) {
 
     return (<div>
-        <h2 className="dark:text-slate-400">Test</h2>
-        <p className="dark:text-slate-400">STD in:</p>
-        <textarea value={testStdIn} onChange={(e) => {
-            setTestStdIn(e.target.value);
-            changeEvent(e.target.value, testStdOut, index);
+        
+        <p className="dark:text-slate-400">Test {index} input:</p>
+        <textarea  onChange={(e) => {
+            let newTestsArray = testsArray.slice();
+            newTestsArray[index].stdin = e.target.value;
+            changeEvent(testsArray);
+            //console.log(testsArray);
         }} />
-        <p className="dark:text-slate-400">STD out:</p>
-        <textarea value={testStdOut} onChange={(e) => {
-            setTestStdOut(e.target.value);
-            changeEvent(testStdIn, e.target.value, index);
-            }} />
+        
+        <p className="dark:text-slate-400">Test {index} output:</p>
+        <textarea  onChange={(e) => {
+            let newTestsArray = testsArray.slice();
+            newTestsArray[index].stdout = e.target.value;
+            changeEvent(testsArray);
+            //console.log(testsArray);
+        }} />   
+        <br />
     </div>)
 }

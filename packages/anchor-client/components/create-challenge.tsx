@@ -10,20 +10,29 @@ import CodeEditorWindow from "./code-editor-window";
 export default function CreateChallenge() {
   const [challengeTitle, setChallengeTitle] = useState("");
   const [challengeDesc, setChallengeDesc] = useState("");
-  const [tests, setTests] = useState([]);
   const [functionName, setFunctionName] = useState("");
   const [templateCode, setTemplateCode] = useState("");
+  const [testElements, setTestElements] = useState([]);
+
+
 
   function handleCreateChallengeButtonClick() {
     const token = localStorage.getItem("SignInToken");
 
+    let tests = []
+    for (let i = 0; i < testElements.length; i++) {
+      tests.push({stdin: testElements[i].stdin, stdout: testElements[i].stdout});
+    }
+
+
+  
     axios.post(`${process.env.NEXT_PUBLIC_API_URL}/challenges`, {
       title: challengeTitle,
       desc: challengeDesc,
       tests: tests,
       rewards: [],
       functionName: functionName,
-      args: tests[0].stdin.split("|").length, 
+      args: tests[0].stdin.split("|").length,   
       templateCode: templateCode,
       token: token
     }).then((response) => {
@@ -35,13 +44,8 @@ export default function CreateChallenge() {
     }).catch((e) => { console.log(e); });
   }
 
+  
 
-
-  function handleTestsUpdate (testStdIn, testStdOut, index) {
-    let newTests = [...tests];
-    newTests[index] = {"stdin": testStdIn, "stdout": testStdOut};
-    setTests(newTests);
-  }
 
 
   function onCodeChange(action, data) {
@@ -50,6 +54,19 @@ export default function CreateChallenge() {
     } else {
       console.log(`unhandled action case: ${action}`);
     }
+  }
+
+  // tests update
+  function onChange(newTests) {
+    setTestElements(newTests);
+  }
+
+  function addTest() {
+    // create copy of tests
+    let newTests = testElements.slice();
+
+    newTests.push({ id: newTests.length, stdin: "", stdout: "" });
+    setTestElements(newTests);
   }
 
   return (
@@ -66,8 +83,16 @@ export default function CreateChallenge() {
       <h2 className="dark:text-slate-400">Description</h2>
       <textarea id="challengeDesc" value={challengeDesc} onChange={(e) => { setChallengeDesc(e.target.value) }} />
       <h2 className="dark:text-slate-400">Function name</h2>
-      <textarea id="challengeDesc" value={functionName} onChange={(e) => { setFunctionName(e.target.value) }} />
-      <ChallengeTest changeEvent={handleTestsUpdate} index={0} />
+      <textarea id="functionName" value={functionName} onChange={(e) => { setFunctionName(e.target.value) }} />
+      <br />
+      <br />
+      <br />
+      <br />
+      {testElements.map(t => <ChallengeTest key={t.id} index={t.id} testsArray={testElements} changeEvent={onChange} />)}
+      <br />
+      <button className="dark:text-slate-200" onClick={addTest}>Add Test</button>
+      <br />
+      
       <h2  className="dark:text-slate-400">template code:</h2>
       <CodeEditorWindow onChange={onCodeChange} language="javascript" code={templateCode} theme="vs-dark" />
       <button className="dark:text-slate-400" onClick={handleCreateChallengeButtonClick}>Create challenge</button>
