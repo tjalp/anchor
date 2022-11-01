@@ -6,7 +6,7 @@ export default function PostsList(amount) {
   const [posts, setPosts] = useState([])
 
   useEffect(() => {
-    axios.get(`${process.env.NEXT_PUBLIC_API_URL}/posts`).then((response) => {
+    axios.get(`${process.env.NEXT_PUBLIC_API_URL}/posts?postsPerPage=9999999999`).then((response) => {
       if (!response.data.error) {
         setPosts(response.data.posts);
       }
