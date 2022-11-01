@@ -69,6 +69,14 @@ export default function CreateChallenge() {
     setTestElements(newTests);
   }
 
+  function removeTest() {
+    // create copy of tests
+    let newTests = testElements.slice();
+
+    newTests.pop();
+    setTestElements(newTests);
+  }
+
   return (
     <>
       <Head>
@@ -91,6 +99,8 @@ export default function CreateChallenge() {
       {testElements.map(t => <ChallengeTest key={t.id} index={t.id} testsArray={testElements} changeEvent={onChange} />)}
       <br />
       <button className="dark:text-slate-200" onClick={addTest}>Add Test</button>
+      <br />
+      <button className="dark:text-slate-200" onClick={removeTest}>Remove Test</button>
       <br />
       
       <h2  className="dark:text-slate-400">template code:</h2>
