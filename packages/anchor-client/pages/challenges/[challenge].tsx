@@ -106,24 +106,26 @@ export default function ChallengePage() {
                             const out = atob(response2.data.stdout);
                             const exportedData = out.substring(out.lastIndexOf("DATAEXPORT|") + "DATAEXPORT|".length);
                             setOutput(exportedData);
-                            const passes = checkTestsPass(exportedData);
+                            const hasPassed = checkTestsPass(exportedData);
                             setPasses(passes);
 
                             let completed = true;
-                            for (let i = 0; i < passes.length; i++) {
-                                if (!passes[i].passed) {
+                            for (let i = 0; i < hasPassed.length; i++) {
+                                if (!hasPassed[i].passed) {
                                     completed = false;
                                 }
                             }
-                            setCompletedChallenge(completed);
-                            if (localStorage.getItem("SignInToken")) {
-                                axios.post(`${process.env.NEXT_PUBLIC_API_URL}/challenges/complete`, {token: localStorage.getItem("SignInToken"), challenge: router.query.challenge}).then((response) => {
-                                    router.push("/challenges");
-                                }).catch((e) => {
-                                    console.error(e);
-                                });
-                            } else {
-                                router.push(`/login?r=${router.pathname}`);
+                            if (completed) {
+                                setCompletedChallenge(completed);
+                                if (localStorage.getItem("SignInToken")) {
+                                    axios.post(`${process.env.NEXT_PUBLIC_API_URL}/challenges/complete`, {token: localStorage.getItem("SignInToken"), challenge: router.query.challenge}).then((response) => {
+                                        router.push("/challenges");
+                                    }).catch((e) => {   
+                                        console.error(e);
+                                    });
+                                } else {
+                                    router.push(`/login?r=${router.pathname}`);
+                                }
                             }
 
                         } else {
