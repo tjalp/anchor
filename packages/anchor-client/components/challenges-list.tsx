@@ -1,6 +1,3 @@
-import axios from "axios";
-import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
 import Link from "next/link"
 
 export default function ChallengesList({challenge_id, title, desc, completed}) {
