@@ -5,6 +5,7 @@ import SideBar from "../components/sideBar"
 import Post from "../components/postComponent.js"
 import { sortAndDeduplicateDiagnostics } from "typescript";
 import Link from "next/link";
+import LoadingIcon from "../components/loading-icon";
 
 export default function home(){
   
@@ -29,7 +30,10 @@ export default function home(){
           <SideBar />
           <div className="float-right mt-14 max-w-16">
             <p className="text-lg text-slate-600 dark:text-neutral-400">Vijf nieuwste posts</p>
-            <div>{posts.map(p => <Post title={p.title} content={p.content} post_id={p._id} key={p._id}/>)}</div>
+            <div>
+              {posts.length === 0 && <LoadingIcon />}
+              {posts.map(p => <Post title={p.title} content={p.content} post_id={p._id} key={p._id}/>)}
+            </div>
           </div>
           <div className="mx-32 mt-14">
             <div>

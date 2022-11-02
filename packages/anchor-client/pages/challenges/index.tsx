@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 import axios from "axios";
 import SideBar from "../../components/sideBar";
 import Head from "next/head";
+import LoadingIcon from "../../components/loading-icon";
 
 export default function challenges(){
 
@@ -50,7 +51,10 @@ export default function challenges(){
     <div className="flex flex-row flex-nowrap h-screen select-none">
       <SideBar />
       <div className="float-right mt-14 max-w-16">
-        <div>{challenges.map(c => <ChallengesList title={c.title} desc={c.desc} completed={c.completedUsers.includes(userID) ? "ja" : "nee"} challenge_id={c._id} key={c._id}/>)}</div>
+        <div>
+          {challenges.length === 0 && <LoadingIcon />}
+          {challenges.map(c => <ChallengesList title={c.title} desc={c.desc} completed={c.completedUsers.includes(userID) ? "ja" : "nee"} challenge_id={c._id} key={c._id}/>)}
+        </div>
       </div>
     </div>
   </>
