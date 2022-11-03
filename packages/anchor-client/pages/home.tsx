@@ -3,8 +3,6 @@ import axios from "axios";
 import Head from "next/head";
 import SideBar from "../components/sideBar"
 import Post from "../components/postComponent.js"
-import { sortAndDeduplicateDiagnostics } from "typescript";
-import Link from "next/link";
 import LoadingIcon from "../components/loading-icon";
 import LoginManager from "../components/loginManager";
 
