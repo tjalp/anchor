@@ -14,8 +14,8 @@ const Login: NextPageWithLayout = () => {
 			<div className="text-7xl text-center m-6 text-black dark:text-slate-400">
         <span className="font-black bg-gradient-to-br from-[#4776E6] to-[#8E54E9] bg-clip-text text-transparent">Login</span>
       </div>
-			<AnchorCard title="Go back" href="/">Go back to the home page</AnchorCard>
-			<GoogleLogin />
+			<AnchorCard title="Go back" href="/home">Ga terug naar home</AnchorCard>
+			<div className="text-center"><GoogleLogin /></div>
 		</>
   )
 }

@@ -6,6 +6,7 @@ import Post from "../components/postComponent.js"
 import { sortAndDeduplicateDiagnostics } from "typescript";
 import Link from "next/link";
 import LoadingIcon from "../components/loading-icon";
+import LoginManager from "../components/loginManager";
 
 export default function home(){
   
@@ -23,6 +24,7 @@ export default function home(){
 
     return(
         <>
+        <LoginManager />
         <Head>
           <title>⚓Anchor</title>
         </Head>
@@ -32,7 +34,7 @@ export default function home(){
             <p className="text-lg text-slate-600 dark:text-neutral-400">Vijf nieuwste posts</p>
             <div>
               {posts.length === 0 && <LoadingIcon />}
-              {posts.map(p => <Post title={p.title} content={p.content} post_id={p._id} key={p._id}/>)}
+              {posts.map(p => <Post title={p.title} content={p.content} post_id={p._id} key={p._id} redirect="/home"/>)}
             </div>
           </div>
           <div className="mx-32 mt-14">

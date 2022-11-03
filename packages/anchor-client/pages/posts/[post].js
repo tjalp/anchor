@@ -36,7 +36,7 @@ export default function Post({ post_id }) {
       <Head>
         <title>{title}</title>
       </Head>
-      <AnchorCard title={"Go back"} href={"/posts"}>Go back to posts</AnchorCard>
+      <AnchorCard title={"Go back"} href={router.query.r ? router.query.r : "/posts"}>Go back</AnchorCard>
       {title === "" && <div className="my-4 w-full flex items-center justify-center"><LoadingIcon /></div>}
       <div className="text-center m-6 text-black dark:text-slate-400">
         <span className="font-black text-7xl m-20 bg-gradient-to-br from-[#4776E6] to-[#8E54E9] bg-clip-text text-transparent">{title}</span>

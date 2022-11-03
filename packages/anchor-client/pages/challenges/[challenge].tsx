@@ -132,7 +132,7 @@ export default function ChallengePage() {
                             setOutput(`CODE ERROR: ${atob(response2.data.stderr)}`);
                         }
                     });
-                }, 2500);
+                }, 1000);
             } else {
                 console.error(response.data.error);
             }
@@ -161,7 +161,7 @@ export default function ChallengePage() {
         <AnchorCard title="Go back" href="/challenges">Go back to challenges</AnchorCard>
         <h1 className="dark:text-slate-200">{title}</h1>
         <p className="dark:text-slate-200">{desc}</p>
-        {title ? <CodeEditorWindow language="javascript" code={code} theme="vs-dark" onChange={onChange} /> : null}
+        {title ? <CodeEditorWindow language="javascript" code={code} theme="vs-dark" onChange={onChange} />: null}
         <button className="dark:text-slate-400" onClick={handleRunCode}>Run</button>
         <p className="bg-black text-white">{output}</p>
         <br />

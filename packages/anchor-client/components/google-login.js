@@ -7,6 +7,7 @@ function GoogleLogin() {
 
     const [user, setUser] = useState(null);
     const Router = useRouter();
+    const [googleLoaded, setGoogleLoaded] = useState(true);
 
     function handleGooleLoginCallbackResponse(googleResponse) {
         login(googleResponse.credential);
@@ -35,16 +36,21 @@ function GoogleLogin() {
     }
 
     useEffect(() => {
-        google.accounts.id.initialize({
-            client_id: '410755111991-4ceee20ibrsiq23097qe1sohltafi3e3.apps.googleusercontent.com',
-            callback: handleGooleLoginCallbackResponse
-        });
-        google.accounts.id.renderButton(document.getElementById("signInDiv"), { theme: "outline", size: "large"});
+        if (typeof google != "undefined") {
+            
+            google.accounts.id.initialize({
+                client_id: '410755111991-4ceee20ibrsiq23097qe1sohltafi3e3.apps.googleusercontent.com',
+                callback: handleGooleLoginCallbackResponse
+            });
+            google.accounts.id.renderButton(document.getElementById("signInDiv"), { theme: "outline", size: "large"});
 
 
-        const signInfo = localStorage.getItem("SignInToken");
-        if (signInfo) {
-            login(signInfo);
+            const signInfo = localStorage.getItem("SignInToken");
+            if (signInfo) {
+                login(signInfo);
+            }
+        } else {
+            setGoogleLoaded(false);
         }
     }, []);
 
@@ -57,8 +63,9 @@ function GoogleLogin() {
     return (<div>
         <div id="signInDiv" hidden={user ? true : false}></div>
 
-        <button id="signOutButton" style={{color: "gray"}} onClick={(e) => handleSignOut(e)} hidden={user ? false : true}>Sign out</button>
+        <button id="signOutButton" style={{color: "gray"}} onClick={(e) => handleSignOut(e)} hidden={user ? false : true}>Uitloggen</button>
         <h2 id="welcomeText" style={{color: "gray"}} hidden={user ? false : true}>Hallo {user ? user.given_name : "(uitgelogd)"}</h2>
+        <p hidden={googleLoaded} className="text-slate-50">Google login is gefaalt om in te laden, misschien heb je een extentie die Google blokeert.</p>
         </div>);
 }
 
