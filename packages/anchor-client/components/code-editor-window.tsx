@@ -13,7 +13,7 @@ export default function CodeEditorWindow({ onChange, language, code, theme }) {
 
   
   return (
-    <div className="overlay rounded-md overflow-hidden w-full h-full shadow-4xl dark:shadow-zinc-900">
+    <div className="overlay rounded-md overflow-hidden w-1/2 h-96 shadow-4xl dark:shadow-zinc-900 m-2">
       <Editor
         height="85vh"
         width={`100%`}

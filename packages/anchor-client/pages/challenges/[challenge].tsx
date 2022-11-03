@@ -4,7 +4,7 @@ import LoginManager from "../../components/loginManager";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Layout from "../../components/layouts/default";
-import AnchorCard from "../../components/anchor-card";
+import Link from "next/link";
 
 
 export default function ChallengePage() {
@@ -156,20 +156,25 @@ export default function ChallengePage() {
         return passed;
     }
 
-
-    return (<div>
-        <AnchorCard title="Go back" href="/challenges">Go back to challenges</AnchorCard>
-        <h1 className="dark:text-slate-200">{title}</h1>
-        <p className="dark:text-slate-200">{desc}</p>
-        {title ? <CodeEditorWindow language="javascript" code={code} theme="vs-dark" onChange={onChange} />: null}
-        <button className="dark:text-slate-400" onClick={handleRunCode}>Run</button>
-        <p className="bg-black text-white">{output}</p>
-        <br />
-        <p className="dark:text-slate-200">Tests:</p>
-        {passes.map((p) => <p className="dark:text-slate-200" key={p.index}>Passed {p.index}: {p.passed ? "yes" : "no"}</p>)}
-        {tests.map((t) => <div key = {t.stdin} className="text-slate-200"><p>input: {t.stdin}</p><p>output: {t.stdout}</p></div>)}
-        <p className="dark:text-slate-200">completed: {completedChallenge ? "yes" : completedUsers.includes(userID) ? "yes" : "no"}</p>
-    </div>)
+    return (
+    <div className="mt-5">
+        <div className="flex flex-row">
+        <Link href="/challenges"><div className="mt-3 p-3 border border-slate-200 dark:border-neutral-600 bg-slate-50 dark:bg-zinc-700 rounded-lg hover:bg-slate-200 dark:hover:bg-zinc-600 cursor-pointer text-lg text-slate-600 dark:text-neutral-400">&#10540;close</div></Link>
+            <div className="px-14">
+                <div className="text-2xl text-slate-900 dark:text-neutral-50">{title}</div>
+                <div className="text-lg text-slate-600 dark:text-neutral-400">{desc}</div>
+            </div>
+            <p className="text-lg text-slate-600 dark:text-neutral-400 mt-6 mx-48">Voltooid: {completedChallenge ? "yes" : completedUsers.includes(userID) ? "Ja" : "Nee"}</p>
+        </div>
+        <div className="flex flex-row">
+            {title ? <CodeEditorWindow language="javascript" code={code} theme="vs-dark" onChange={onChange} /> : null}
+            <div className="h-96 w-1/2 m-2 bg-slate-200 dark:bg-zinc-700 border border-transparent rounded">
+                <p className="dark:text-slate-200 m-2">{output}</p>
+            </div>
+        </div>
+        <button className="p-3 px-5 bg-green-500 hover:bg-green-600 border border-transparent rounded-lg text-gray-100" onClick={handleRunCode}>&#62;Run</button>
+    </div>
+    )
 }
 
 

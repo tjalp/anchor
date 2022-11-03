@@ -53,6 +53,7 @@ export default function challenges(){
       <div className="float-right mt-14 max-w-16">
         <div>
           {challenges.length === 0 && <LoadingIcon />}
+          <p className="text-lg text-slate-600 dark:text-neutral-400">Alle challenges</p>
           {challenges.map(c => <ChallengesList title={c.title} desc={c.desc} completed={c.completedUsers.includes(userID) ? "ja" : "nee"} challenge_id={c._id} key={c._id}/>)}
         </div>
       </div>

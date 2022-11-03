@@ -14,7 +14,7 @@ const NotFound: NextPageWithLayout = () => {
         <span className="font-black bg-gradient-to-r from-[#f7ff00] to-[#db36a4] bg-clip-text text-transparent">~ 404 ~</span>
       </div>
       <div className="items-center">
-        <AnchorCard title="Go Home" href="/">Return to the home page</AnchorCard>
+        <AnchorCard title="Go Home" href="/home">Return to the home page</AnchorCard>
       </div>
     </>
   )

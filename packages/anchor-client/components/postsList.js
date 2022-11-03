@@ -18,7 +18,7 @@ export default function PostsList(amount) {
 
   return (
     <>
-      <div className="float-right mt-14 mx-14 max-w-16 h-5/7 overflow-y-scroll">
+      <div className="float-right mt-14 mx-14 max-w-16 h-5/7">
         <p className="text-lg text-slate-600 dark:text-neutral-400">Alle posts</p>
         <div>
           {posts.length === 0 && <LoadingIcon />}
