@@ -3,6 +3,8 @@ import type { ReactElement } from "react";
 import { NextPageWithLayout } from "./_app";
 import Layout from "../components/layouts/default";
 import Head from "next/head";
+import LoginManager from "../components/loginManager";
+
 
 const Home: NextPageWithLayout = () => {
   return (
@@ -26,6 +28,7 @@ const Home: NextPageWithLayout = () => {
         <AnchorCard title="Create challenge" href="/challenges/create">Create a new challenge, you must be admin and backend must be running</AnchorCard>
         <AnchorCard title="Challenges" href="/challenges">View challenges</AnchorCard>
         <AnchorCard title="Home" href="/home">coole home page?</AnchorCard>
+        <LoginManager />
       </div>
     </>
   )

@@ -21,6 +21,8 @@ function GoogleLogin() {
                 setUser(jwt_decode(credential));
                 if (Router.query.r) {
                     Router.push(Router.query.r);
+                } else {
+                    Router.push("/home");
                 }
             } else {
                 if (response.data.reLogin) {
