@@ -2,6 +2,7 @@
 
 
 # API documentation
+(ps dit is outdated, zie code in api folder voor betere api info)
 # posts
 link: `(ip):(port)/api/v1/posts`
 
