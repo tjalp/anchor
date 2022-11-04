@@ -12,7 +12,7 @@ export default class codeController {
         
         const options = {
             method: 'POST',
-            url: 'https://judge0-ce.p.rapidapi.com/submissions',
+            url: 'http://localhost:2358/submissions',
             params: {base64_encoded: 'true', fields: '*'},
             headers: {
               'content-type': 'application/json',
@@ -39,7 +39,7 @@ export default class codeController {
 
         const options = {
             method: 'GET',
-            url: `https://judge0-ce.p.rapidapi.com/submissions/${token}`,
+            url: `http://localhost:2358/submissions/${token}`,
             params: {base64_encoded: 'true', fields: '*'},  
             headers: {
               'X-RapidAPI-Key': '35b30a040emshc7149f24bb0d3dcp17a90cjsnb1f2d1526608',
