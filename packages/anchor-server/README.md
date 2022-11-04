@@ -2,7 +2,7 @@
 
 
 # API documentation
-(ps dit is outdated, zie code in api folder voor betere api info)
+(ps dit is outdated, zie code in api folder voor betere api info. Voor posts betekent dit vooral dat je met create, edit en delete ook een login token moet geven)
 # posts
 link: `(ip):(port)/api/v1/posts`
 
