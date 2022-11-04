@@ -88,6 +88,7 @@ export default function ChallengePage() {
                 codegen += " + '|'"
             }
             codegen += ";"
+            codegen += '\nconsole.log("SEPERATOR");'
         }
         codegen += "\nconsole.log(DATAEXPORTOUTPUT);";
         console.log(codegen);
@@ -105,7 +106,7 @@ export default function ChallengePage() {
                             console.log(response2.data);
                             const out = atob(response2.data.stdout);
                             const exportedData = out.substring(out.lastIndexOf("DATAEXPORT|") + "DATAEXPORT|".length);
-                            setOutput(exportedData);
+                            setOutput(out.split("SEPERATOR")[0]);
                             const hasPassed = checkTestsPass(exportedData);
                             setPasses(passes);
 
